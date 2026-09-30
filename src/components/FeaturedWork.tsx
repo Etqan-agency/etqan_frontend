@@ -92,9 +92,9 @@ export default function FeaturedWork({
 
   return (
     <section id="work" className="border-t border-border pt-24 md:pt-40">
-      <div className="mx-auto mb-12 flex max-w-[1600px] items-end justify-between gap-6 px-6 md:mb-4 md:px-10">
-        <h2 className="text-5xl font-medium leading-[0.95] tracking-[-0.04em] md:text-8xl">
-          {t.heading[0]}<br />{t.heading[1]}
+      <div className="mx-auto mb-12 flex max-w-[1600px] flex-wrap items-end justify-between gap-x-6 gap-y-4 px-6 md:mb-4 md:px-10">
+        <h2 className="shrink-0 text-4xl font-medium leading-[0.95] tracking-[-0.04em] sm:text-5xl md:text-8xl">
+          {t.heading[0]} {t.heading[1]}
         </h2>
         <Link href={projectsPath} className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary hover:underline">
           {viewAll} ({String(projects.length).padStart(2, "0")}) →
