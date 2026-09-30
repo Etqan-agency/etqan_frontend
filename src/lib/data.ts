@@ -76,7 +76,12 @@ export const SITE: SiteContent = {
     phone: "+20 150 731 1232",
     whatsapp: whatsappLink("+20 150 731 1232"),
     address: "6th October, Giza, Egypt",
-    socials: [],
+    // Official profiles; the dashboard's Settings → Social links override these when set.
+    socials: [
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/etqan-agency-a26111403" },
+      { label: "Instagram", href: "https://www.instagram.com/etqan_plusplus1" },
+      { label: "Facebook", href: "https://www.facebook.com/share/1Dbejimf3F/" },
+    ],
   },
 };
 

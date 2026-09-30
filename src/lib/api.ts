@@ -402,6 +402,13 @@ export async function getMissionVision(locale: Locale = "en"): Promise<{ mission
 
 /* ------------------------------- Site ------------------------------- */
 
+/** Display names for social keys entered in the dashboard (e.g. "linkedin" → "LinkedIn"). */
+const SOCIAL_LABELS: Record<string, string> = {
+  linkedin: "LinkedIn", facebook: "Facebook", instagram: "Instagram", x: "X", twitter: "X", tiktok: "TikTok",
+  youtube: "YouTube", behance: "Behance", dribbble: "Dribbble", github: "GitHub", whatsapp: "WhatsApp", snapchat: "Snapchat",
+};
+const socialLabel = (key: string) => SOCIAL_LABELS[key.trim().toLowerCase()] ?? key.charAt(0).toUpperCase() + key.slice(1);
+
 export async function getSite(locale: Locale = "en"): Promise<SiteContent> {
   const fallback = locale === "ar" ? SITE_AR : SITE;
   const s = await get<ApiSettings>("/settings/");
@@ -425,7 +432,7 @@ export async function getSite(locale: Locale = "en"): Promise<SiteContent> {
       address: ar ? pick(s.address_ar, fallback.contact.address) : pick(s.address, fallback.contact.address),
       socials: Object.entries(s.social_links ?? {})
         .filter(([, href]) => href)
-        .map(([label, href]) => ({ label: label.charAt(0).toUpperCase() + label.slice(1), href })),
+        .map(([key, href]) => ({ label: socialLabel(key), href })),
     },
   };
 }
