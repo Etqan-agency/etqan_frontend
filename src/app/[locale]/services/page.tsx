@@ -4,7 +4,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import InnerPage from "@/components/detail/InnerPage";
 import Breadcrumbs from "@/components/detail/Breadcrumbs";
-import Hero from "@/components/Hero";
 import { getServices } from "@/lib/api";
 import { pageMetadata } from "@/lib/seo";
 import { isLocale, localePath, type Locale } from "@/i18n/config";
@@ -25,26 +24,19 @@ export default async function ServicesHub({ params }: Params) {
   const { locale: raw } = await params;
   if (!isLocale(raw)) notFound();
   const locale: Locale = raw;
-  const t = getDictionary(locale);
-  const d = t.detail;
+  const d = getDictionary(locale).detail;
   const services = await getServices(locale);
 
   return (
     <InnerPage locale={locale} path="/services">
-      <div className="-mt-20">
-        <Hero t={t.hero} id="services-hero" scrollTarget="#services-list">
-          <h1 className="max-w-4xl text-4xl font-medium leading-[1] tracking-[-0.04em] md:text-6xl">{d.servicesTitle}</h1>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted md:text-xl">{d.servicesIntro}</p>
-          <div className="mt-8 flex flex-wrap justify-center gap-4 text-[11px] font-bold tracking-widest">
-            <Link href={localePath(locale, "/contact")} data-cta="services_hero_start" className="rounded-full bg-foreground px-7 py-4 text-white transition-colors hover:bg-primary">{t.nav.cta}</Link>
-            <a href="#services-list" className="rounded-full border border-foreground px-7 py-4 transition-colors hover:border-primary hover:text-primary">{d.learnMore}</a>
-          </div>
-        </Hero>
-      </div>
-      <section id="services-list" className="border-t border-border px-6 py-16 md:px-10 md:py-24">
-        <div className="mx-auto mb-12 max-w-[1600px]">
+      <section className="px-6 pb-16 pt-16 md:px-10 md:pt-24">
+        <div className="mx-auto max-w-[1600px]">
           <Breadcrumbs items={[{ name: d.home, href: localePath(locale, "/") }, { name: d.services, href: localePath(locale, "/services") }]} />
+          <h1 className="mt-12 max-w-5xl text-5xl font-medium leading-[0.95] tracking-[-0.04em] md:text-8xl">{d.servicesTitle}</h1>
+          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted md:text-xl">{d.servicesIntro}</p>
         </div>
+      </section>
+      <section id="services-list" className="border-t border-border px-6 py-16 md:px-10 md:py-24">
         <ul className="mx-auto grid max-w-[1600px] gap-8 md:grid-cols-2 xl:grid-cols-3">
           {services.map((s) => (
             <li key={s.slug}>

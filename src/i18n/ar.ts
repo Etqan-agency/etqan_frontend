@@ -161,6 +161,7 @@ const ar: Dictionary = {
     startSimilar: "ابدأ مشروعاً مشابهاً",
     nextProject: "المشروع التالي",
     allProjects: "كل المشاريع",
+    viewProjects: "تصفّح المشاريع",
   },
   aboutPage: {
     metaTitle: "من نحن — إتقان لتطوير البرمجيات والتسويق الرقمي في مصر",

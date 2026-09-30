@@ -159,6 +159,7 @@ const en = {
     startSimilar: "START A SIMILAR PROJECT",
     nextProject: "Next project",
     allProjects: "All projects",
+    viewProjects: "VIEW PROJECTS",
   },
   aboutPage: {
     metaTitle: "About ETQAN — Software Development & Digital Marketing Company in Egypt",
