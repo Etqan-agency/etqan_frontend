@@ -63,19 +63,20 @@ export default async function ProjectsHub({ params }: Params) {
       {groups.map((g, i) => (
         <section key={g.key} className={`px-6 py-16 md:px-10 md:py-24 ${i > 0 ? "border-t border-border" : ""}`}>
           <div className="mx-auto max-w-[1600px]">
-            <div className="mb-10 max-w-3xl">
+            <div className="mx-auto mb-10 max-w-3xl text-center">
               <h2 className="text-4xl font-medium leading-[0.95] tracking-[-0.04em] md:text-6xl">{g.title}</h2>
               {g.note && <p className="mt-5 leading-relaxed text-muted">{g.note}</p>}
             </div>
-            <div className="grid gap-8 lg:grid-cols-2">
+            <div className="flex flex-wrap justify-center gap-8">
               {g.items.map((p) => (
-                <ProjectCard
-                  key={p.id}
-                  project={p}
-                  href={localePath(locale, `/projects/${p.id}`)}
-                  cta={d.viewCase}
-                  badge={p.ownership === "team" ? d.teamBadge : undefined}
-                />
+                <div key={p.id} className="w-full lg:w-[calc(50%-1rem)]">
+                  <ProjectCard
+                    project={p}
+                    href={localePath(locale, `/projects/${p.id}`)}
+                    cta={d.viewCase}
+                    badge={p.ownership === "team" ? d.teamBadge : undefined}
+                  />
+                </div>
               ))}
             </div>
           </div>
