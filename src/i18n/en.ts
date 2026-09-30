@@ -51,7 +51,7 @@ const en = {
     screenshot: "screenshot",
   },
   about: {
-    label: "(About) إتقان — Mastery",
+    label: "(About) ETQAN — Mastery",
     more: "More about ETQAN",
     values: ["Software Development", "Digital Marketing", "Mobile Apps", "UI/UX Design", "Branding", "SEO & Growth"],
   },
@@ -84,7 +84,7 @@ const en = {
     generic: "Something went wrong. Please try again.",
   },
   footer: {
-    tagline: "Full-service software development and digital marketing — built with إتقان.",
+    tagline: "Full-service software development and digital marketing — built with mastery.",
     company: "Company",
     services: "Services",
     touch: "Get in touch",
@@ -166,7 +166,7 @@ const en = {
     metaDescription:
       "ETQAN is a software development and digital marketing company in 6th of October, Giza. Engineers, designers and marketers who build and grow web, mobile and custom software.",
     eyebrow: "About us",
-    h1: "Engineering and marketing, built with إتقان.",
+    h1: "Engineering and marketing, built with mastery.",
     intro:
       "ETQAN is a software development and digital solutions company based in 6th of October City, Giza, Egypt. We design, build and market websites, mobile apps and custom business software for companies in Egypt and the Gulf.",
     whoTitle: "Who we are",

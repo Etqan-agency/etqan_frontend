@@ -66,7 +66,7 @@ export type Project = {
 export const whatsappLink = (phone: string) => `https://wa.me/${phone.replace(/\D/g, "")}`;
 
 export const SITE: SiteContent = {
-  badge: "Built with إتقان — mastery",
+  badge: "ETQAN means mastery",
   subtitle:
     "ETQAN designs, builds and markets websites, mobile apps and custom business software for companies in Egypt and the Gulf — engineering and marketing under one roof.",
   about:
