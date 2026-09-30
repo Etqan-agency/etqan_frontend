@@ -1,0 +1,196 @@
+@import "tailwindcss";
+
+:root {
+  /* ETQAN brand palette */
+  --navy: #151934;
+  --primary: #034c88;
+  --accent: #4dc1e3;
+  /* #4dc1e3 is only 2:1 on light surfaces and under white text, so text-bearing gradients end on a deeper sky:
+     --accent-text keeps large gradient headings >= 3:1 on --background, --accent-strong keeps white button labels >= 4.5:1 */
+  --accent-text: #1c91bd;
+  --accent-strong: #1580a8;
+  --ink: #1a1919;
+
+  --background: #f6f8fb;
+  --secondary: #e9eff6;
+  --foreground: var(--navy);
+  /* #636b88 (not the original #6b7390) so muted copy clears WCAG AA 4.5:1 on --background and --secondary */
+  --muted: #636b88;
+  --border: rgba(21, 25, 52, 0.1);
+  --brand-gradient: linear-gradient(120deg, var(--primary) 0%, var(--accent) 100%);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-secondary: var(--secondary);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-navy: var(--navy);
+  --color-primary: var(--primary);
+  --color-accent: var(--accent);
+  --color-ink: var(--ink);
+  /* One typeface across the whole site: Cormorant Garamond */
+  --font-sans: var(--font-cormorant), "Playfair Display", Georgia, serif;
+  --font-editorial: var(--font-sans);
+
+  --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-marquee-slow: marquee 60s linear infinite;
+  --animate-blink: blink 1s step-end infinite;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Keep keyboard-focused elements clear of the fixed header (and the mobile contact bar) when the browser scrolls them into view */
+    scroll-padding-top: 6rem;
+    scroll-padding-bottom: 5rem;
+  }
+  /* One consistent keyboard focus ring: brand blue on light surfaces, sky on navy ones. */
+  :focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 3px;
+  }
+  .bg-navy :focus-visible {
+    outline-color: var(--accent);
+  }
+  /* Programmatic focus targets (e.g. <main> after "Skip to content") need no ring */
+  [tabindex="-1"]:focus {
+    outline: none;
+  }
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    /* Cormorant defaults to old-style figures; use lining numerals so dates/stats read evenly */
+    font-variant-numeric: lining-nums;
+  }
+  ::selection {
+    background: var(--primary);
+    color: #fff;
+  }
+}
+
+/* Arabic: letter-spacing breaks joined letters, and tight display leading clips Arabic ascenders/descenders. */
+html[lang="ar"] body * { letter-spacing: 0 !important; }
+html[lang="ar"] :is(h1, h2, h3) { line-height: 1.3 !important; }
+/* Arabic needs a larger minimum size than the Latin micro-labels to stay legible. */
+html[lang="ar"] :is(.text-\[10px\], .text-\[11px\], .text-xs) { font-size: 0.8125rem; }
+
+/* Lenis */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: clip; }
+
+/* Global film grain */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0.03;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.marquee-track:hover .marquee-inner { animation-play-state: paused; }
+
+/* Manifesto words start faded; About.tsx inks them in as the paragraph scrolls through the viewport */
+.manifesto .word { color: rgba(21, 25, 52, 0.5); }
+/* Reduced motion: no scroll-scrubbed reveal — the manifesto is shown fully inked (overrides the inline motion colour) */
+@media (prefers-reduced-motion: reduce) {
+  .manifesto .word { color: var(--navy) !important; }
+}
+
+/* Hero entrance (CSS, so it runs before hydration and needs no animation library) */
+@keyframes hero-reveal {
+  from { opacity: 0; transform: translateY(20px); }
+}
+.hero-reveal { animation: hero-reveal 1.2s cubic-bezier(0.23, 1, 0.32, 1) 0.2s both; }
+.hero-reveal-late { animation-duration: 1s; animation-delay: 0.9s; }
+
+/* Brand gradient helpers (logo gradient: blue -> sky) */
+.text-gradient {
+  /* Ends on a deeper sky so the whole word keeps >= 3:1 (large text) on light surfaces */
+  background: linear-gradient(120deg, var(--primary) 0%, var(--accent-text) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+/* On navy the dark end is the problem: start from a lighter blue (3.8:1 on navy) and finish on the bright sky */
+.bg-navy .text-gradient { background-image: linear-gradient(120deg, #2a7bc0 0%, var(--accent) 100%); }
+.bg-brand-gradient { background: var(--brand-gradient); }
+/* Brand gradient behind white button text: same direction, deeper sky end so the label stays >= 4.5:1 */
+.bg-brand-gradient-strong { background: linear-gradient(120deg, var(--primary) 0%, var(--accent-strong) 100%); }
+
+/* Soft light pool behind copy that sits on the video heroes, so it keeps AA contrast over the darker frames */
+.hero-scrim { position: relative; isolation: isolate; }
+.hero-scrim::before {
+  content: "";
+  position: absolute;
+  inset: -3rem -4rem;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(closest-side, rgb(246 248 251 / 0.97) 60%, rgb(246 248 251 / 0.7) 82%, transparent 100%);
+}
+
+/* Duotone image treatment: navy/blue tint over greyscale photography */
+.duotone { isolation: isolate; } /* element must already be positioned */
+.duotone img { filter: grayscale(1) contrast(1.05); }
+.duotone::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  mix-blend-mode: color;
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* Long-form article body (blog). Kept small and brand-aligned instead of pulling in a typography plugin. */
+.prose-etqan { font-size: 1.2rem; line-height: 1.75; }
+.prose-etqan > * + * { margin-top: 1.25em; }
+.prose-etqan h2 { margin-top: 2.2em; font-size: 2rem; line-height: 1.15; font-weight: 500; letter-spacing: -0.02em; }
+.prose-etqan h3 { margin-top: 1.8em; font-size: 1.5rem; line-height: 1.25; font-weight: 500; }
+.prose-etqan a { color: var(--primary); text-decoration: underline; text-underline-offset: 3px; }
+.prose-etqan ul, .prose-etqan ol { padding-inline-start: 1.4em; }
+.prose-etqan ul { list-style: disc; }
+.prose-etqan ol { list-style: decimal; }
+.prose-etqan li + li { margin-top: 0.4em; }
+.prose-etqan blockquote { border-inline-start: 2px solid var(--accent); padding-inline-start: 1em; color: var(--muted); }
+.prose-etqan code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.85em; background: var(--secondary); padding: 0.1em 0.35em; border-radius: 4px; }
+.prose-etqan pre { overflow-x: auto; background: var(--navy); color: #fff; padding: 1.2em; border-radius: 12px; direction: ltr; }
+.prose-etqan pre code { background: none; padding: 0; color: inherit; }
+.prose-etqan table { width: 100%; border-collapse: collapse; font-size: 0.95em; }
+.prose-etqan th, .prose-etqan td { border-bottom: 1px solid var(--border); padding: 0.6em 0.5em; text-align: start; }
+.prose-etqan img { border-radius: 12px; }
+
+/* Visitor pressed "Pause animations" (footer): freeze CSS animations — marquees, pulses, blinking caret. */
+html.motion-paused *,
+html.motion-paused *::before,
+html.motion-paused *::after {
+  animation-play-state: paused !important;
+}
