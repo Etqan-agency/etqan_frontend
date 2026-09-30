@@ -75,6 +75,8 @@ const en = {
     budgets: ["Under $3,000", "$3,000 – $10,000", "$10,000 – $30,000", "$30,000+", "Not sure yet"],
     message: "Tell us about your project (optional)",
     hint: "Leave an email or a WhatsApp number — whichever you prefer.",
+    privacyNote: "By sending this form, you agree that ETQAN may use your details to reply to your enquiry, as described in our",
+    privacyLink: "Privacy Policy",
     submit: "START A PROJECT",
     sending: "SENDING…",
     needContact: "Please leave an email address or a phone / WhatsApp number so we can reply.",

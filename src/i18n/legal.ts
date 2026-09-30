@@ -26,7 +26,7 @@ type LegalStrings = {
   /** Footer bottom bar. */
   footer: { privacy: string; terms: string; legalAria: string };
   /** Shared page chrome. */
-  page: { lastUpdatedLabel: string; lastUpdated: string; template: string; contents: string; questions: string; questionsText: string };
+  page: { lastUpdatedLabel: string; lastUpdated: string; contents: string; questions: string; questionsText: string };
   privacy: LegalDoc;
   terms: LegalDoc;
 };
@@ -45,7 +45,6 @@ const en: LegalStrings = {
   page: {
     lastUpdatedLabel: "Last updated",
     lastUpdated: "30 September 2026",
-    template: "This page is a template and should be reviewed by a qualified lawyer before relying on it.",
     contents: "On this page",
     questions: "Questions?",
     questionsText: "Email us and a member of the team will reply.",
@@ -89,14 +88,21 @@ const en: LegalStrings = {
         ],
       },
       {
-        heading: "How we use your information",
-        list: [
-          "To reply to your enquiry, discuss your project and prepare a proposal.",
-          "To follow up with you about the enquiry you sent.",
-          "To understand which channels and campaigns bring enquiries, so we can improve our marketing.",
-          "To protect the website and the form against spam and abuse.",
+        heading: "How we use your information, and why",
+        paragraphs: [
+          "We use your information only for the purposes below. For each one, this is the reason the law allows us to do it:",
         ],
-        after: ["We do not sell your personal information, and we do not add you to a mailing list unless you ask us to."],
+        list: [
+          "To reply to your enquiry, discuss your project and prepare a proposal — because you asked us to, as a step before a possible agreement, and on the basis of the consent you give by sending the form.",
+          "To follow up with you about that enquiry — for the same reasons.",
+          "To understand which channels and campaigns bring enquiries (the visit details sent with the form) — our legitimate interest in improving our marketing, or your consent where your local law requires it.",
+          "To measure how the website is used with analytics cookies — only with your consent, which you can withdraw at any time.",
+          "To protect the website and the form against spam and abuse — our legitimate interest in keeping the service secure.",
+          "To keep records we are required to keep by law — our legal obligations.",
+        ],
+        after: [
+          "We do not sell your personal information, we do not use it for decisions made solely by automated means, and we do not send you marketing emails unless you ask us to.",
+        ],
       },
       {
         heading: "What happens when you submit the form",
@@ -128,29 +134,57 @@ const en: LegalStrings = {
         ],
       },
       {
-        heading: "WhatsApp and other third parties",
+        heading: "WhatsApp and other service providers",
         paragraphs: [
           "Our WhatsApp links open WhatsApp, a service operated by Meta. Anything you send there is handled under WhatsApp's own privacy policy.",
-          "We also rely on service providers to host the website, store enquiries and deliver email, as well as the analytics and security providers named above. They process information on our behalf only as needed to provide their services. Some of them may process information outside Egypt.",
+          "We rely on service providers to host the website, store enquiries and deliver email, and on the analytics and security providers named above. They process information on our behalf only as needed to provide their services.",
+        ],
+      },
+      {
+        heading: "Transfers between countries",
+        paragraphs: [
+          "ETQAN operates from Egypt. If you contact us from Saudi Arabia, the UAE or another country, your enquiry is transferred to us in Egypt so we can reply. Our hosting, email and analytics providers may also store data in other countries.",
+          "We transfer only the information needed for the purposes in this policy, protect it with the safeguards described here, and follow the rules on transfers outside your country that apply under your local data protection law.",
         ],
       },
       {
         heading: "How long we keep information",
-        paragraphs: [
-          "We keep enquiries for as long as we need them to respond to you, work with you and keep reasonable business records. When they are no longer needed, or when you ask us to delete them, we delete them unless we are required by law to keep them.",
+        list: [
+          "Enquiries that don't lead to a project: deleted within 24 months of our last contact with you.",
+          "Enquiries that lead to a project: kept for the duration of our work together and afterwards for as long as commercial, tax or accounting laws require.",
+          "Analytics data (only if you accepted cookies): kept for up to 14 months.",
+          "Visit details stored in your browser: 30 days, then discarded unless you send the form.",
+        ],
+        after: [
+          "You can ask us to delete your information sooner, and we will do so unless the law requires us to keep it.",
         ],
       },
       {
         heading: "Your rights",
         paragraphs: [
-          "Under Egypt's Personal Data Protection Law (Law No. 151 of 2020), you can ask to access the personal information we hold about you, correct it, have it deleted, or withdraw your consent where we rely on it.",
-          `If you are in Saudi Arabia, the UAE or another Gulf country, you can send any request under your local data protection law to the same address. Email ${LEGAL_EMAIL} and we will respond as soon as we can.`,
+          "Depending on where you live, you have the following rights over your personal data:",
+        ],
+        list: [
+          "Egypt — under the Personal Data Protection Law (Law No. 151 of 2020): to know what data we hold and get a copy, to correct, update or delete it, to restrict or object to its processing, to withdraw your consent, and to be told about a breach that affects your data.",
+          "Saudi Arabia — under the Personal Data Protection Law (Royal Decree No. M/19 of 1443H, as amended): to be informed about how your data is processed, to access it and receive a copy in a readable format, to correct it, to request its destruction when it is no longer needed, and to withdraw your consent.",
+          "United Arab Emirates — under Federal Decree-Law No. 45 of 2021 on the Protection of Personal Data: to obtain information about the processing, to access your data and receive it in a portable format, to correct or erase it, to restrict or object to processing (including for direct marketing), and not to be subject to decisions based solely on automated processing.",
+        ],
+        after: [
+          `To use any of these rights, email ${LEGAL_EMAIL}. We will reply within 30 days, and we may ask you to confirm your identity first.`,
+          "If you are not satisfied with our answer, you can complain to the data protection authority in your country: in Egypt, the Personal Data Protection Center; in Saudi Arabia, the Saudi Data & AI Authority (SDAIA); in the UAE, the UAE Data Office.",
         ],
       },
       {
         heading: "Security",
         paragraphs: [
-          "We take reasonable technical and organisational measures to protect the information you share with us. No website or transmission over the internet is completely secure, so please avoid sending highly sensitive information through the form.",
+          "We take reasonable technical and organisational measures to protect the information you share with us, including encrypted connections (HTTPS) and access limited to the team members who handle enquiries. No website or transmission over the internet is completely secure, so please don't send highly sensitive information through the form.",
+          "If a breach affects your personal data, we will notify you and the relevant authority where the law requires it.",
+        ],
+      },
+      {
+        heading: "Children",
+        paragraphs: [
+          "This website is intended for businesses and adults. We do not knowingly collect personal information from anyone under 18. If you believe a child has sent us their information, email us and we will delete it.",
         ],
       },
       {
@@ -228,6 +262,13 @@ const en: LegalStrings = {
         heading: "Governing law",
         paragraphs: [
           "These terms are governed by the laws of the Arab Republic of Egypt. Any dispute relating to them or to the website falls under the jurisdiction of the competent courts of Giza, Egypt.",
+          "If you use the website from Saudi Arabia, the UAE or another country, nothing in these terms takes away rights you have under the mandatory consumer or data protection laws of your country.",
+        ],
+      },
+      {
+        heading: "Language",
+        paragraphs: [
+          "These terms and our Privacy Policy are published in Arabic and English. If the two versions differ, the Arabic version prevails.",
         ],
       },
     ],
@@ -244,7 +285,6 @@ const ar: LegalStrings = {
   page: {
     lastUpdatedLabel: "آخر تحديث",
     lastUpdated: "30 سبتمبر 2026",
-    template: "هذه الصفحة نموذج أوّلي، ويجب أن يراجعها محامٍ مختص قبل الاعتماد عليها.",
     contents: "في هذه الصفحة",
     questions: "لديك سؤال؟",
     questionsText: "راسلنا عبر البريد الإلكتروني وسيردّ عليك أحد أعضاء الفريق.",
@@ -286,14 +326,21 @@ const ar: LegalStrings = {
         ],
       },
       {
-        heading: "كيف نستخدم معلوماتك",
-        list: [
-          "للرد على طلبك ومناقشة مشروعك وإعداد عرض مناسب.",
-          "لمتابعة التواصل معك بشأن الطلب الذي أرسلته.",
-          "لمعرفة القنوات والحملات التي تأتي منها الطلبات، حتى نحسّن تسويقنا.",
-          "لحماية الموقع والنموذج من الرسائل المزعجة وإساءة الاستخدام.",
+        heading: "كيف نستخدم معلوماتك ولماذا",
+        paragraphs: [
+          "نستخدم معلوماتك للأغراض التالية فقط، ومع كل غرض الأساس الذي يسمح لنا به القانون:",
         ],
-        after: ["لا نبيع بياناتك الشخصية، ولا نضيفك إلى أي قائمة بريدية إلا إذا طلبت ذلك."],
+        list: [
+          "للرد على طلبك ومناقشة مشروعك وإعداد عرض مناسب — لأنك طلبت ذلك منا كخطوة تسبق أي اتفاق محتمل، وبناءً على الموافقة التي تمنحها بإرسال النموذج.",
+          "لمتابعة التواصل معك بشأن هذا الطلب — للأسباب نفسها.",
+          "لمعرفة القنوات والحملات التي تأتي منها الطلبات (تفاصيل الزيارة المرسلة مع النموذج) — لمصلحتنا المشروعة في تحسين تسويقنا، أو بموافقتك إذا اشترط قانون بلدك ذلك.",
+          "لقياس استخدام الموقع عبر ملفات تعريف الارتباط التحليلية — بموافقتك فقط، ويمكنك سحبها في أي وقت.",
+          "لحماية الموقع والنموذج من الرسائل المزعجة وإساءة الاستخدام — لمصلحتنا المشروعة في الحفاظ على أمان الخدمة.",
+          "للاحتفاظ بالسجلات التي يُلزمنا القانون بها — التزامًا بواجباتنا القانونية.",
+        ],
+        after: [
+          "لا نبيع بياناتك الشخصية، ولا نتخذ بشأنك قرارات قائمة على المعالجة الآلية وحدها، ولا نرسل إليك رسائل تسويقية إلا إذا طلبت ذلك.",
+        ],
       },
       {
         heading: "ماذا يحدث عند إرسال النموذج",
@@ -325,29 +372,57 @@ const ar: LegalStrings = {
         ],
       },
       {
-        heading: "واتساب والأطراف الأخرى",
+        heading: "واتساب ومزودو الخدمات",
         paragraphs: [
-          "روابط واتساب في موقعنا تفتح تطبيق واتساب، وهو خدمة تديرها شركة Meta. وأي رسالة ترسلها هناك تخضع لسياسة الخصوصية الخاصة بواتساب.",
-          "نعتمد كذلك على مزوّدي خدمات لاستضافة الموقع وحفظ الطلبات وإرسال البريد الإلكتروني، إلى جانب مزوّدي التحليلات والحماية المذكورين أعلاه. ويعالج هؤلاء المعلومات نيابةً عنا وبالقدر اللازم لتقديم خدماتهم فقط، وقد يعالج بعضهم المعلومات خارج مصر.",
+          "تفتح روابط واتساب في موقعنا تطبيق واتساب الذي تشغّله شركة Meta، وأي شيء ترسله عبره يخضع لسياسة الخصوصية الخاصة بواتساب.",
+          "نعتمد على مزودي خدمات لاستضافة الموقع وحفظ الطلبات وإرسال البريد الإلكتروني، إضافة إلى مزودي التحليلات والحماية المذكورين أعلاه. ويعالجون المعلومات نيابةً عنا وبالقدر اللازم لتقديم خدماتهم فقط.",
+        ],
+      },
+      {
+        heading: "نقل البيانات بين الدول",
+        paragraphs: [
+          "تعمل إتقان من مصر. فإذا تواصلت معنا من المملكة العربية السعودية أو الإمارات العربية المتحدة أو أي دولة أخرى، يُنقل طلبك إلينا في مصر حتى نتمكن من الرد عليك. وقد يحفظ مزودو الاستضافة والبريد الإلكتروني والتحليلات البيانات في دول أخرى أيضًا.",
+          "لا ننقل إلا المعلومات اللازمة للأغراض الواردة في هذه السياسة، ونحميها بالضمانات الموضّحة فيها، ونلتزم بقواعد نقل البيانات خارج بلدك وفق قانون حماية البيانات المعمول به لديك.",
         ],
       },
       {
         heading: "مدة الاحتفاظ بالمعلومات",
-        paragraphs: [
-          "نحتفظ بالطلبات طوال المدة التي نحتاجها للرد عليك والعمل معك والاحتفاظ بسجلات عمل معقولة. وعندما لا نعود بحاجة إليها، أو عندما تطلب حذفها، نحذفها ما لم يُلزمنا القانون بالاحتفاظ بها.",
+        list: [
+          "الطلبات التي لا تتحول إلى مشروع: تُحذف خلال 24 شهرًا من آخر تواصل بيننا.",
+          "الطلبات التي تتحول إلى مشروع: نحتفظ بها طوال مدة عملنا معًا، ثم للمدة التي تفرضها القوانين التجارية والضريبية والمحاسبية.",
+          "بيانات التحليلات (فقط إذا وافقت على ملفات تعريف الارتباط): تُحفظ لمدة أقصاها 14 شهرًا.",
+          "تفاصيل الزيارة المحفوظة في متصفحك: 30 يومًا، ثم تُحذف ما لم ترسل النموذج.",
+        ],
+        after: [
+          "يمكنك أن تطلب منا حذف معلوماتك قبل ذلك، وسنحذفها ما لم يُلزمنا القانون بالاحتفاظ بها.",
         ],
       },
       {
         heading: "حقوقك",
         paragraphs: [
-          "وفقًا لقانون حماية البيانات الشخصية المصري (القانون رقم 151 لسنة 2020)، يحق لك طلب الاطلاع على بياناتك الشخصية التي نحتفظ بها، أو تصحيحها، أو حذفها، أو سحب موافقتك في الحالات التي نعتمد فيها عليها.",
-          `وإذا كنت في المملكة العربية السعودية أو الإمارات أو أي دولة خليجية أخرى، يمكنك إرسال أي طلب بموجب قانون حماية البيانات المعمول به لديك إلى العنوان نفسه. راسلنا على ${LEGAL_EMAIL} وسنرد عليك في أقرب وقت ممكن.`,
+          "بحسب البلد الذي تقيم فيه، تتمتع بالحقوق التالية على بياناتك الشخصية:",
+        ],
+        list: [
+          "مصر — وفق قانون حماية البيانات الشخصية (القانون رقم 151 لسنة 2020): أن تعرف البيانات التي نحتفظ بها وتحصل على نسخة منها، وأن تصحّحها أو تحدّثها أو تحذفها، وأن تقيّد معالجتها أو تعترض عليها، وأن تسحب موافقتك، وأن تُبلَّغ بأي خرق يمسّ بياناتك.",
+          "المملكة العربية السعودية — وفق نظام حماية البيانات الشخصية (الصادر بالمرسوم الملكي رقم م/19 لعام 1443هـ وتعديلاته): أن تُبلَّغ بكيفية معالجة بياناتك، وأن تطّلع عليها وتحصل على نسخة منها بصيغة مقروءة، وأن تصحّحها، وأن تطلب إتلافها متى انتفت الحاجة إليها، وأن تسحب موافقتك.",
+          "الإمارات العربية المتحدة — وفق المرسوم بقانون اتحادي رقم 45 لسنة 2021 بشأن حماية البيانات الشخصية: أن تحصل على معلومات عن المعالجة، وأن تطّلع على بياناتك وتتسلّمها بصيغة قابلة للنقل، وأن تصحّحها أو تمحوها، وأن تقيّد معالجتها أو تعترض عليها (بما في ذلك لأغراض التسويق المباشر)، وألا تخضع لقرارات قائمة على المعالجة الآلية وحدها.",
+        ],
+        after: [
+          `لممارسة أي من هذه الحقوق، راسلنا على ${LEGAL_EMAIL}. سنرد خلال 30 يومًا، وقد نطلب منك تأكيد هويتك أولًا.`,
+          "وإذا لم يرضِك ردّنا، يمكنك تقديم شكوى إلى جهة حماية البيانات في بلدك: في مصر مركز حماية البيانات الشخصية، وفي السعودية الهيئة السعودية للبيانات والذكاء الاصطناعي (سدايا)، وفي الإمارات مكتب الإمارات للبيانات.",
         ],
       },
       {
         heading: "أمن المعلومات",
         paragraphs: [
-          "نتخذ إجراءات تقنية وتنظيمية معقولة لحماية المعلومات التي تشاركها معنا. ولكن لا يوجد موقع أو نقل عبر الإنترنت آمن تمامًا، لذا نرجو ألا ترسل معلومات بالغة الحساسية عبر النموذج.",
+          "نتخذ تدابير تقنية وتنظيمية معقولة لحماية المعلومات التي تشاركها معنا، منها الاتصال المشفّر (HTTPS) وقصر الوصول على أعضاء الفريق الذين يتولون الطلبات. ولا يوجد موقع أو نقل عبر الإنترنت آمن تمامًا، لذا نرجو ألا ترسل عبر النموذج معلومات شديدة الحساسية.",
+          "إذا وقع خرق يمسّ بياناتك الشخصية، فسنُبلغك ونُبلغ الجهة المختصة متى اشترط القانون ذلك.",
+        ],
+      },
+      {
+        heading: "الأطفال",
+        paragraphs: [
+          "هذا الموقع موجّه إلى الشركات والبالغين، ولا نجمع عن علم أي معلومات شخصية ممن هم دون 18 عامًا. إذا كنت تعتقد أن طفلًا أرسل إلينا معلوماته، فراسلنا وسنحذفها.",
         ],
       },
       {
@@ -421,7 +496,14 @@ const ar: LegalStrings = {
       {
         heading: "القانون الواجب التطبيق",
         paragraphs: [
-          "تخضع هذه الشروط لقوانين جمهورية مصر العربية، وتختص محاكم الجيزة المختصة بنظر أي نزاع يتعلق بها أو بالموقع.",
+          "تخضع هذه الشروط لقوانين جمهورية مصر العربية، وتختص المحاكم المختصة في الجيزة بمصر بنظر أي نزاع يتعلق بها أو بالموقع.",
+          "إذا استخدمت الموقع من المملكة العربية السعودية أو الإمارات العربية المتحدة أو أي دولة أخرى، فلا يسلبك أي شيء في هذه الشروط الحقوق التي تكفلها لك القوانين الإلزامية لحماية المستهلك أو حماية البيانات في بلدك.",
+        ],
+      },
+      {
+        heading: "اللغة",
+        paragraphs: [
+          "تُنشر هذه الشروط وسياسة الخصوصية باللغتين العربية والإنجليزية، وعند وجود أي اختلاف بين النسختين يُعتدّ بالنسخة العربية.",
         ],
       },
     ],

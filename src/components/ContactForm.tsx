@@ -1,7 +1,8 @@
 "use client";
 
 import { ArrowUpRight } from "lucide-react";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import Script from "next/script";
 import { useId, useRef, useState, type FormEvent } from "react";
 import { readAttribution, track } from "@/lib/analytics";
@@ -33,6 +34,7 @@ export type ServiceOption = { slug: string; title: string };
 
 export default function ContactForm({ services, fallbackEmail, t }: { services: ServiceOption[]; fallbackEmail: string; t: Dictionary["form"] }) {
   const router = useRouter();
+  const privacyHref = usePathname()?.startsWith("/ar") ? "/ar/privacy" : "/privacy";
   const [status, setStatus] = useState<Status>({ state: "idle" });
   const started = useRef(false);
   const id = useId();
@@ -161,6 +163,11 @@ export default function ContactForm({ services, fallbackEmail, t }: { services: 
       {/* Honeypot: hidden from people, filled in by bots. The API rejects submissions that include it. */}
       <input name="website" tabIndex={-1} autoComplete="off" aria-hidden className="absolute -left-[9999px] h-0 w-0 opacity-0" />
       <p id={f("hint")} className="mt-2 text-xs text-white/70 md:col-span-2">{t.hint}</p>
+      {/* Consent notice: submitting the form is the consent the Privacy Policy relies on (EG/KSA/UAE). */}
+      <p className="text-xs text-white/70 md:col-span-2">
+        {t.privacyNote}{" "}
+        <Link href={privacyHref} className="text-white underline underline-offset-4 hover:text-accent">{t.privacyLink}</Link>.
+      </p>
       <div className="mt-8 flex flex-col items-center gap-4 md:col-span-2">
         {TURNSTILE_SITE_KEY && <div className="cf-turnstile" data-sitekey={TURNSTILE_SITE_KEY} data-theme="dark" />}
         <button

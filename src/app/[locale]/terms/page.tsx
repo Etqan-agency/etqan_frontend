@@ -45,10 +45,6 @@ export default async function TermsPage({ params }: Params) {
           <p className="mt-8 text-[11px] font-medium uppercase tracking-[0.3em] text-muted">
             {pg.lastUpdatedLabel}: <time dateTime={LEGAL_UPDATED_ISO} className="text-foreground">{pg.lastUpdated}</time>
           </p>
-          {/* TEMPLATE NOTICE — delete this element once a qualified lawyer has reviewed the page. */}
-          <p data-legal-template role="note" className="mt-8 max-w-3xl rounded-sm border border-primary/30 bg-primary/5 px-5 py-4 text-sm leading-relaxed text-foreground">
-            {pg.template}
-          </p>
         </div>
       </section>
 
