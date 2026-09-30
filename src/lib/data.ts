@@ -72,7 +72,7 @@ export const SITE: SiteContent = {
   about:
     "Etqan means mastery — and it is how we work. Engineers, designers and marketers under one roof, building software that performs and campaigns that grow, so your product and your brand move forward as one.",
   contact: {
-    email: "hello@etqanagency.com",
+    email: "admin@etqanpp.com",
     phone: "+20 150 731 1232",
     whatsapp: whatsappLink("+20 150 731 1232"),
     address: "6th October, Giza, Egypt",

@@ -31,7 +31,7 @@ type LegalStrings = {
   terms: LegalDoc;
 };
 
-export const LEGAL_EMAIL = "hello@etqanagency.com";
+export const LEGAL_EMAIL = "admin@etqanpp.com";
 /** ISO date of the last substantive change — shown on both pages. */
 export const LEGAL_UPDATED_ISO = "2026-09-30";
 
