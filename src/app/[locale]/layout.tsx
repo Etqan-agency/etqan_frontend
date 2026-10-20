@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Noto_Naskh_Arabic } from "next/font/google";
+import { Readex_Pro } from "next/font/google";
 import { notFound } from "next/navigation";
 import Script from "next/script";
 import SmoothScroll from "@/components/SmoothScroll";
@@ -13,30 +13,12 @@ import { LOCALES, dirOf, isLocale, languageAlternates, localePath, type Locale }
 import { getDictionary } from "@/i18n";
 import "../globals.css";
 
-const editorial = Cormorant_Garamond({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-cormorant",
+// Readex Pro covers Arabic and Latin, so both locales share one face.
+const readex = Readex_Pro({
+  subsets: ["latin", "arabic"],
+  variable: "--font-readex",
   display: "swap",
 });
-
-// Cormorant has no Arabic glyphs, so Arabic text falls through to Naskh while Latin keeps the brand serif.
-const naskh = Noto_Naskh_Arabic({
-  subsets: ["arabic"],
-  weight: ["400", "500", "600", "700"],
-  display: "swap",
-  preload: false,
-});
-
-/**
- * Latin brand serif first, then Naskh, then the metric fallbacks. Order matters: next/font's
- * "… Fallback" faces alias local system fonts that include Arabic glyphs, so Naskh must come before them.
- */
-function arabicStack() {
-  const [latin, latinFallback] = editorial.style.fontFamily.split(", ");
-  const [arabic, arabicFallback] = naskh.style.fontFamily.split(", ");
-  return [latin, arabic, latinFallback, arabicFallback].filter(Boolean).join(", ");
-}
 
 export function generateStaticParams() {
   return LOCALES.map((locale) => ({ locale }));
@@ -80,10 +62,9 @@ export default async function LocaleLayout({ children, params }: Readonly<{ chil
   const locale: Locale = raw;
   const t = getDictionary(locale);
   const site = await getSite(locale);
-  const fontStack = locale === "ar" ? ({ "--font-cormorant": arabicStack() } as React.CSSProperties) : undefined;
 
   return (
-    <html lang={locale} dir={dirOf(locale)} className={editorial.variable} style={fontStack} suppressHydrationWarning>
+    <html lang={locale} dir={dirOf(locale)} className={readex.variable} suppressHydrationWarning>
       <head>
         {/* Apply a saved "Pause animations" choice before first paint (see MotionToggle). */}
         <script
