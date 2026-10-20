@@ -23,7 +23,7 @@ export default function StructuredData({ contact, locale, description }: { conta
       sameAs: contact.socials.map((s) => s.href),
       knowsAbout: [
         "Web development", "Mobile app development", "Custom software development",
-        "E-commerce development", "UI/UX design", "Branding", "Digital marketing", "SEO",
+        "E-commerce development", "UI/UX design", "Business automation", "Software integrations",
       ],
     },
     {

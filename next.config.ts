@@ -38,6 +38,9 @@ const nextConfig: NextConfig = {
       { source: "/work/:slug", destination: "/projects/:slug", permanent: true },
       { source: "/ar/work", destination: "/ar/projects", permanent: true },
       { source: "/ar/work/:slug", destination: "/ar/projects/:slug", permanent: true },
+      // ETQAN no longer offers marketing services; old links (and the pre-SEO-rename slug) land on the services hub.
+      { source: "/services/:slug(digital-marketing|marketing)", destination: "/services", permanent: true },
+      { source: "/ar/services/:slug(digital-marketing|marketing)", destination: "/ar/services", permanent: true },
     ];
   },
   async headers() {

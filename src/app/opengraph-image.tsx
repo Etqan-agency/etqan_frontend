@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "ETQAN — Software Development & Digital Marketing";
+export const alt = "ETQAN — Software Products & Digital Solutions";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -15,10 +15,10 @@ export default function OpengraphImage() {
       >
         <div style={{ fontSize: 40, fontWeight: 700, letterSpacing: 8 }}>ETQAN</div>
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <div style={{ fontSize: 76, fontWeight: 600, lineHeight: 1.05 }}>Software development</div>
-          <div style={{ fontSize: 76, fontWeight: 600, lineHeight: 1.05, color: "#4dc1e3" }}>& digital marketing.</div>
+          <div style={{ fontSize: 76, fontWeight: 600, lineHeight: 1.05 }}>Software products</div>
+          <div style={{ fontSize: 76, fontWeight: 600, lineHeight: 1.05, color: "#4dc1e3" }}>& digital solutions.</div>
         </div>
-        <div style={{ fontSize: 28, opacity: 0.75 }}>Web · Mobile · Custom software · Branding · Growth — Egypt & the Gulf</div>
+        <div style={{ fontSize: 28, opacity: 0.75 }}>Web · Mobile · Custom software · UI/UX — Egypt & the Gulf</div>
       </div>
     ),
     size,

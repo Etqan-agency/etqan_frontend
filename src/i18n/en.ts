@@ -1,9 +1,9 @@
-/** UI copy. Content that marketing edits (services, projects, about…) comes from the API; see lib/data.ts for fallbacks. */
+/** UI copy. Content the team edits (services, projects, about…) comes from the API; see lib/data.ts for fallbacks. */
 const en = {
   meta: {
-    title: "ETQAN — Software Development & Digital Marketing Company in Egypt",
+    title: "ETQAN — Software Development & Digital Solutions Company in Egypt",
     description:
-      "ETQAN designs, builds and markets websites, mobile apps and custom business software for companies in Egypt and the Gulf — engineering and marketing under one roof.",
+      "ETQAN designs and builds websites, mobile apps and custom business software for companies in Egypt and the Gulf — software products and solutions, from first idea to launch and support.",
     ogLocale: "en_US",
   },
   a11y: {
@@ -29,12 +29,12 @@ const en = {
     menuAria: "Site menu",
   },
   hero: {
-    h1Line1: "Software development",
+    h1Line1: "Software products",
     h1Line2: "& digital",
-    h1Accent: "marketing.",
+    h1Accent: "solutions.",
     cta: "Book a free consultation",
-    trust: ["Web, mobile & custom software", "Design, build & marketing in one team", "Arabic & English products", "Based in Giza, Egypt"],
-    phrases: ["Building Tomorrow", "Shaping Futures", "Driving Growth"],
+    trust: ["Web, mobile & custom software", "Design, build & support in one team", "Arabic & English products", "Based in Giza, Egypt"],
+    phrases: ["Building Tomorrow", "Shaping Futures", "Shipping Products"],
     scroll: "Scroll",
   },
   brands: { heading: "The technology behind our work" },
@@ -53,7 +53,7 @@ const en = {
   about: {
     label: "(About) ETQAN — Mastery",
     more: "More about ETQAN",
-    values: ["Software Development", "Digital Marketing", "Mobile Apps", "UI/UX Design", "Branding", "SEO & Growth"],
+    values: ["Software Development", "Web Platforms", "Mobile Apps", "Custom Systems", "UI/UX Design", "Automation & Integrations"],
   },
   process: { heading: ["The", "Process"], countLabel: "Steps" },
   contact: {
@@ -61,7 +61,7 @@ const en = {
     heading: "Let's Build",
     headingLine2: "It",
     headingAccent: "Right.",
-    intro: "Software, branding or growth marketing — tell us what you need and we'll come back to you with clear next steps.",
+    intro: "A website, an app or custom software — tell us what you need and we'll come back to you with clear next steps.",
     whatsapp: "WhatsApp",
   },
   form: {
@@ -84,7 +84,7 @@ const en = {
     generic: "Something went wrong. Please try again.",
   },
   footer: {
-    tagline: "Full-service software development and digital marketing — built with mastery.",
+    tagline: "Software products and digital solutions — built with mastery.",
     company: "Company",
     services: "Services",
     touch: "Get in touch",
@@ -121,8 +121,8 @@ const en = {
     home: "Home",
     services: "Services",
     projects: "Projects",
-    servicesTitle: "Software, app & marketing services",
-    servicesIntro: "Five disciplines, one team. Pick what you need — or let us build and grow the whole product with you.",
+    servicesTitle: "Software, web & app development services",
+    servicesIntro: "Four disciplines, one team. Pick what you need — or let us design and build the whole product with you.",
     projectsTitle: "Projects: web, mobile and custom software",
     projectsIntro: "Products designed and built by ETQAN — and apps our team has shipped.",
     etqanProjects: "ETQAN projects",
@@ -162,36 +162,36 @@ const en = {
     viewProjects: "VIEW PROJECTS",
   },
   aboutPage: {
-    metaTitle: "About ETQAN — Software Development & Digital Marketing Company in Egypt",
+    metaTitle: "About ETQAN — Software Development Company in Egypt",
     metaDescription:
-      "ETQAN is a software development and digital marketing company in 6th of October, Giza. Engineers, designers and marketers who build and grow web, mobile and custom software.",
+      "ETQAN is a software development company in 6th of October, Giza. Engineers and designers who build web platforms, mobile apps and custom business software.",
     eyebrow: "About us",
-    h1: "Engineering and marketing, built with mastery.",
+    h1: "Software products and solutions, built with mastery.",
     intro:
-      "ETQAN is a software development and digital solutions company based in 6th of October City, Giza, Egypt. We design, build and market websites, mobile apps and custom business software for companies in Egypt and the Gulf.",
+      "ETQAN is a software development and digital solutions company based in 6th of October City, Giza, Egypt. We design and build websites, mobile apps and custom business software for companies in Egypt and the Gulf.",
     whoTitle: "Who we are",
     whoText:
-      "Etqan (إتقان) means mastery — doing the work carefully and completely. We are engineers, designers and marketers working as one team, so the product we build and the way it reaches customers are planned together from day one.",
+      "Etqan (إتقان) means mastery — doing the work carefully and completely. We are engineers and designers working as one team, so every product is planned, designed, built and supported by the same people from day one.",
     whatTitle: "What we do",
     capabilities: [
       { title: "Software development", text: "Web platforms, iOS and Android apps, and custom systems such as dashboards, admin panels, ERP/CRM tools and integrations — built on modern stacks like Next.js, React, React Native, Flutter, Node.js and Django." },
       { title: "Digital solutions", text: "Automation, integrations and e-commerce: connecting stores, suppliers, payments and internal tools so operations run with less manual work." },
-      { title: "Digital marketing", text: "SEO, performance campaigns on Google and Meta, social media and content — with tracking set up end to end, so growth is measured in leads and sales." },
+      { title: "Product design", text: "UI/UX design for web and mobile — user flows, wireframes, interfaces and design systems, built for Arabic and English users from the start." },
     ],
     approachTitle: "Our approach",
-    approachText: "Six clear steps, from understanding your business to launching, marketing and improving the product.",
+    approachText: "Six clear steps, from understanding your business to launching, supporting and improving the product.",
     whyTitle: "Why work with ETQAN",
     why: [
-      { title: "One team from build to growth", text: "Engineering, design and marketing under one roof — no hand-offs between agencies, one partner accountable for results." },
+      { title: "One team from idea to launch", text: "Planning, design and engineering under one roof — no hand-offs between vendors, one partner accountable for the product." },
       { title: "Arabic-first, bilingual products", text: "We design and build for Arabic-speaking users from the start: right-to-left interfaces, Arabic content and English side by side." },
       { title: "Proven mobile & web experience", text: "Our team has shipped production apps and platforms — including a React Native app used by 60,000+ people and a high-scale automation platform." },
       { title: "A transparent process", text: "Clear scope, timeline and cost before we start, and visibility into progress throughout the project." },
     ],
     missionTitle: "Our mission",
     mission:
-      "To help businesses in Egypt and the Gulf build digital products that work well and grow — combining careful engineering with marketing that is measured end to end.",
+      "To help businesses in Egypt and the Gulf build software products and solutions that work well and last — through careful engineering and clear communication.",
     visionTitle: "Our vision",
-    vision: "To be the region's most trusted partner for Arabic-first software and digital growth.",
+    vision: "To be the region's most trusted partner for Arabic-first software products.",
     teamTitle: "The team",
     ctaTitle: "Have a project in mind?",
     ctaText: "Tell us what you want to build. We'll come back with clear next steps.",
@@ -199,7 +199,7 @@ const en = {
   contactPage: {
     metaTitle: "Contact ETQAN — 6th of October, Giza · WhatsApp 01507311232",
     metaDescription:
-      "Talk to ETQAN about your website, app, software or marketing project. Call or WhatsApp 01507311232, email us, or send the form — based in 6th of October, Giza, Egypt.",
+      "Talk to ETQAN about your website, app or software project. Call or WhatsApp 01507311232, email us, or send the form — based in 6th of October, Giza, Egypt.",
     eyebrow: "Contact",
     h1: "Let's talk about your project.",
     intro: "Send the form, message us on WhatsApp or call — whichever is easiest. We work with businesses in Egypt, Saudi Arabia and the UAE, in Arabic and English.",
@@ -220,15 +220,15 @@ const en = {
       { question: "Do you work with clients outside Egypt?", answer: "Yes. We work remotely with businesses in Egypt, Saudi Arabia and the UAE, in Arabic and English, with online meetings and regular progress updates." },
       { question: "How much does a project cost?", answer: "It depends on scope — the platforms, features, integrations and content involved. After a short discovery call we send a clear proposal with scope, timeline and cost." },
       { question: "How long does it take to build a website or app?", answer: "Timelines depend on scope. We agree on milestones before development starts, so you always know what is being delivered and when." },
-      { question: "Do you support the product after launch?", answer: "Yes. We offer ongoing maintenance, new features and marketing, so the product keeps improving after it goes live." },
+      { question: "Do you support the product after launch?", answer: "Yes. We offer ongoing maintenance, monitoring and new features, so the product keeps improving after it goes live." },
     ],
   },
   blog: {
-    metaTitle: "Blog — Software, Apps & Digital Marketing Insights | ETQAN",
-    metaDescription: "Practical guides on building websites, mobile apps and custom software, and on growing them with SEO and digital marketing — from the ETQAN team.",
+    metaTitle: "Blog — Software, Web & App Development Insights | ETQAN",
+    metaDescription: "Practical guides on building websites, mobile apps and custom software — from the ETQAN team.",
     eyebrow: "Blog",
-    h1: "Insights on building and growing digital products",
-    intro: "Practical guides from our engineers, designers and marketers.",
+    h1: "Insights on building digital products",
+    intro: "Practical guides from our engineers and designers.",
     readMore: "Read article",
     by: "By",
     minRead: "min read",

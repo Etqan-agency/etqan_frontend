@@ -1,6 +1,6 @@
 import type { IconType } from "react-icons";
 import {
-  SiDjango, SiDocker, SiFigma, SiFirebase, SiFlutter, SiGoogleads, SiMeta,
+  SiDjango, SiDocker, SiFigma, SiFirebase, SiFlutter,
   SiNextdotjs, SiNodedotjs, SiPostgresql, SiReact, SiTailwindcss, SiTypescript,
 } from "react-icons/si";
 
@@ -16,8 +16,6 @@ const STACK: { name: string; icon: IconType }[] = [
   { name: "Docker", icon: SiDocker },
   { name: "Tailwind CSS", icon: SiTailwindcss },
   { name: "Figma", icon: SiFigma },
-  { name: "Google Ads", icon: SiGoogleads },
-  { name: "Meta Ads", icon: SiMeta },
 ];
 
 export default function TrustedBrands({ heading }: { heading: string }) {

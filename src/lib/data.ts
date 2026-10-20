@@ -68,9 +68,9 @@ export const whatsappLink = (phone: string) => `https://wa.me/${phone.replace(/\
 export const SITE: SiteContent = {
   badge: "ETQAN means mastery",
   subtitle:
-    "ETQAN designs, builds and markets websites, mobile apps and custom business software for companies in Egypt and the Gulf — engineering and marketing under one roof.",
+    "ETQAN designs and builds websites, mobile apps and custom business software for companies in Egypt and the Gulf — software products and solutions, from first idea to launch and support.",
   about:
-    "Etqan means mastery — and it is how we work. Engineers, designers and marketers under one roof, building software that performs and campaigns that grow, so your product and your brand move forward as one.",
+    "Etqan means mastery — and it is how we work. Engineers and designers under one roof, building websites, apps and business software that perform, from the first idea to long-term support.",
   contact: {
     email: "admin@etqanpp.com",
     phone: "+20 150 731 1232",
@@ -92,7 +92,7 @@ export const SERVICES: Service[] = [
     description: "High-performance websites and web platforms built on modern stacks — fast, secure, SEO-ready and easy for your team to manage.",
     tags: ["Next.js & React", "E-commerce", "CMS"],
     slug: "web-development",
-    longDescription: "Your website is often the first place a customer decides whether to trust you. We build fast, secure websites and web platforms — company sites, e-commerce stores, customer portals and SaaS products — on modern stacks like Next.js and React, with a content management system your team can use without a developer.\n\nEvery build is SEO-ready from day one: clean URLs, structured data, fast load times on mobile networks and bilingual Arabic/English support with proper right-to-left layouts. Because we also run marketing, the site ships with analytics and conversion tracking, so you can see which pages bring in leads.",
+    longDescription: "Your website is often the first place a customer decides whether to trust you. We build fast, secure websites and web platforms — company sites, e-commerce stores, customer portals and SaaS products — on modern stacks like Next.js and React, with a content management system your team can use without a developer.\n\nEvery build is SEO-ready from day one: clean URLs, structured data, fast load times on mobile networks and bilingual Arabic/English support with proper right-to-left layouts. Every site also ships with analytics and conversion tracking set up, so you can see which pages bring in leads.",
     image: "/images/services/web-development.webp",
   },
   {
@@ -101,7 +101,7 @@ export const SERVICES: Service[] = [
     description: "Native-quality iOS and Android apps with one codebase, designed around your users and engineered to scale with your business.",
     tags: ["iOS & Android", "Flutter", "React Native"],
     slug: "mobile-app-development",
-    longDescription: "We build iOS and Android apps from one codebase with React Native and Flutter, so you launch on both stores faster and maintain one product instead of two. Our team has shipped production apps with push notifications, offline-friendly local storage, deep linking, media uploads and smooth animations — including an app used by 60,000+ people.\n\nWe handle the whole journey: UX and interface design, the app itself, the backend and APIs it needs, store submission and launch marketing. Arabic and English are supported from the start, with interfaces designed for right-to-left reading.",
+    longDescription: "We build iOS and Android apps from one codebase with React Native and Flutter, so you launch on both stores faster and maintain one product instead of two. Our team has shipped production apps with push notifications, offline-friendly local storage, deep linking, media uploads and smooth animations — including an app used by 60,000+ people.\n\nWe handle the whole journey: UX and interface design, the app itself, the backend and APIs it needs, and store submission and launch. Arabic and English are supported from the start, with interfaces designed for right-to-left reading.",
     image: "/images/services/mobile-app-development.webp",
   },
   {
@@ -121,15 +121,6 @@ export const SERVICES: Service[] = [
     slug: "ui-ux-design-branding",
     longDescription: "Good design makes a product easy to use and a brand easy to remember. We create brand identities — logo, colour, typography and visual language — and design the interfaces of websites and apps around how your customers actually behave.\n\nWe design Arabic-first and bilingual interfaces properly: right-to-left layouts, Arabic typography and content that reads naturally, not a mirrored English design. Designs are delivered as reusable design systems, so your product stays consistent as it grows.",
     image: "/images/services/ui-ux-design-branding.webp",
-  },
-  {
-    id: "05",
-    title: "Digital Marketing",
-    description: "Performance campaigns, SEO, social media and content that turn attention into measurable growth — tracked end to end.",
-    tags: ["Paid Ads", "SEO", "Social & Content"],
-    slug: "digital-marketing",
-    longDescription: "A great product still needs the right people to find it. We plan and run digital marketing that is measured in leads and sales, not likes: search engine optimisation (SEO), paid campaigns on Google and Meta, social media and content.\n\nSEO covers technical fixes, Arabic and English keyword research, content and local search, so you show up when customers search for what you sell. Every campaign is tracked end to end with analytics and conversion tracking, and because we also build websites and apps, we can fix what stops visitors from converting.",
-    image: "/images/services/digital-marketing.webp",
   },
 ];
 
@@ -244,11 +235,11 @@ export const canonicalServiceSlug = (slug: string) => LEGACY_SERVICE_SLUGS[slug]
 
 export const PROCESS: TimelineItem[] = [
   { date: "Step 01", title: "Discovery", description: "We learn your business, your customers and your goals — then define what success looks like in numbers." },
-  { date: "Step 02", title: "Strategy & Planning", description: "A clear roadmap covering scope, technology, timeline and the marketing plan that will bring users in." },
+  { date: "Step 02", title: "Strategy & Planning", description: "A clear roadmap covering scope, technology, timeline and the milestones up to launch." },
   { date: "Step 03", title: "Design", description: "Brand, UX and UI designed together and tested with real users before a single line of production code." },
   { date: "Step 04", title: "Develop & Test", description: "Agile sprints with weekly demos, automated testing and full transparency on progress." },
-  { date: "Step 05", title: "Launch & Market", description: "We go live and switch on the growth engine — SEO, campaigns and content, all tracked end to end." },
-  { date: "Ongoing", title: "Support & Grow", description: "Maintenance, new features and continuous optimisation, so your product and your results keep improving." },
+  { date: "Step 05", title: "Launch", description: "We deploy to production and, for apps, publish to the App Store and Google Play — then monitor the first days closely." },
+  { date: "Ongoing", title: "Support & Improve", description: "Maintenance, new features and continuous optimisation, so your product keeps improving." },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -258,22 +249,22 @@ export const PROCESS: TimelineItem[] = [
 export const SITE_AR: SiteContent = {
   badge: "صُنع بإتقان",
   subtitle:
-    "في إتقان نصمّم ونطوّر ونسوّق المواقع الإلكترونية وتطبيقات الجوال والأنظمة المخصصة للشركات في مصر والخليج — هندسة وتسويق تحت سقف واحد.",
+    "في إتقان نصمّم ونطوّر المواقع الإلكترونية وتطبيقات الجوال والأنظمة المخصصة للشركات في مصر والخليج — منتجات وحلول برمجية من الفكرة حتى الإطلاق والدعم.",
   about:
-    "إتقان تعني الإحكام في العمل — وهكذا نعمل. مهندسون ومصممون ومسوّقون تحت سقف واحد، نبني برمجيات تؤدي بكفاءة وحملات تحقق النمو، ليتقدّم منتجك وعلامتك التجارية معاً.",
+    "إتقان تعني الإحكام في العمل — وهكذا نعمل. مهندسون ومصممون تحت سقف واحد، نبني مواقع وتطبيقات وأنظمة أعمال تؤدي بكفاءة، من الفكرة الأولى حتى الدعم المستمر.",
   contact: { ...SITE.contact, address: "السادس من أكتوبر، الجيزة، مصر" },
 };
 
 /** Keyed by service slug so API services can pick up an Arabic fallback. */
 export const SERVICES_AR: Record<string, Pick<Service, "title" | "description" | "tags" | "longDescription">> = {
   "web-development": {
-    longDescription: "موقعك الإلكتروني هو غالباً المكان الأول الذي يقرر فيه العميل أن يثق بك. نبني مواقع ومنصات ويب سريعة وآمنة — مواقع شركات ومتاجر إلكترونية وبوابات عملاء ومنتجات SaaS — بتقنيات حديثة مثل Next.js وReact، مع نظام لإدارة المحتوى يستطيع فريقك استخدامه دون الحاجة إلى مطوّر.\n\nكل موقع نبنيه جاهز لمحركات البحث منذ اليوم الأول: روابط واضحة وبيانات منظمة وسرعة تحميل عالية على شبكات الجوال ودعم كامل للعربية والإنجليزية بتصميم صحيح من اليمين إلى اليسار. ولأننا ندير التسويق أيضاً، يأتي الموقع مزوّداً بالتحليلات وتتبّع التحويلات لتعرف أي الصفحات تجلب لك العملاء.",
+    longDescription: "موقعك الإلكتروني هو غالباً المكان الأول الذي يقرر فيه العميل أن يثق بك. نبني مواقع ومنصات ويب سريعة وآمنة — مواقع شركات ومتاجر إلكترونية وبوابات عملاء ومنتجات SaaS — بتقنيات حديثة مثل Next.js وReact، مع نظام لإدارة المحتوى يستطيع فريقك استخدامه دون الحاجة إلى مطوّر.\n\nكل موقع نبنيه جاهز لمحركات البحث منذ اليوم الأول: روابط واضحة وبيانات منظمة وسرعة تحميل عالية على شبكات الجوال ودعم كامل للعربية والإنجليزية بتصميم صحيح من اليمين إلى اليسار. ويأتي كل موقع مزوّداً بالتحليلات وتتبّع التحويلات لتعرف أي الصفحات تجلب لك العملاء.",
     title: "تطوير المواقع",
     description: "مواقع ومنصات ويب عالية الأداء مبنية بأحدث التقنيات — سريعة وآمنة وجاهزة لمحركات البحث، ويسهل على فريقك إدارتها.",
     tags: ["Next.js و React", "المتاجر الإلكترونية", "أنظمة إدارة المحتوى"],
   },
   "mobile-app-development": {
-    longDescription: "نطوّر تطبيقات iOS وAndroid من قاعدة برمجية واحدة باستخدام React Native وFlutter، لتطلق تطبيقك على المتجرين أسرع وتدير منتجاً واحداً بدلاً من اثنين. أطلق فريقنا تطبيقات حقيقية تتضمن الإشعارات والتخزين المحلي والروابط العميقة ورفع الوسائط والحركات الانسيابية — منها تطبيق يستخدمه أكثر من 60,000 شخص.\n\nنتولى الرحلة كاملة: تصميم تجربة المستخدم والواجهات، والتطبيق نفسه، والخادم وواجهات API التي يحتاجها، والنشر على المتاجر وتسويق الإطلاق. ندعم العربية والإنجليزية منذ البداية بواجهات مصممة للقراءة من اليمين إلى اليسار.",
+    longDescription: "نطوّر تطبيقات iOS وAndroid من قاعدة برمجية واحدة باستخدام React Native وFlutter، لتطلق تطبيقك على المتجرين أسرع وتدير منتجاً واحداً بدلاً من اثنين. أطلق فريقنا تطبيقات حقيقية تتضمن الإشعارات والتخزين المحلي والروابط العميقة ورفع الوسائط والحركات الانسيابية — منها تطبيق يستخدمه أكثر من 60,000 شخص.\n\nنتولى الرحلة كاملة: تصميم تجربة المستخدم والواجهات، والتطبيق نفسه، والخادم وواجهات API التي يحتاجها، والنشر على المتاجر والإطلاق. ندعم العربية والإنجليزية منذ البداية بواجهات مصممة للقراءة من اليمين إلى اليسار.",
     title: "تطبيقات الجوال",
     description: "تطبيقات iOS وAndroid بجودة التطبيقات الأصلية من قاعدة برمجية واحدة، مصممة حول مستخدميك ومهيأة للنمو مع أعمالك.",
     tags: ["iOS و Android", "Flutter", "React Native"],
@@ -289,12 +280,6 @@ export const SERVICES_AR: Record<string, Pick<Service, "title" | "description" |
     title: "تصميم UI/UX والهوية",
     description: "هويات بصرية وواجهات منتجات مصممة بعناية — من الشعار واللغة البصرية إلى أنظمة التصميم المتكاملة.",
     tags: ["الهوية البصرية", "UI/UX", "أنظمة التصميم"],
-  },
-  "digital-marketing": {
-    longDescription: "حتى المنتج الممتاز يحتاج أن يصل إليه الأشخاص المناسبون. نخطط وندير تسويقاً رقمياً يُقاس بالعملاء المحتملين والمبيعات لا بالإعجابات: تحسين محركات البحث (SEO)، والحملات المدفوعة على Google وMeta، والسوشيال ميديا والمحتوى.\n\nيشمل تحسين محركات البحث الإصلاحات التقنية وأبحاث الكلمات المفتاحية بالعربية والإنجليزية والمحتوى والبحث المحلي، لتظهر عندما يبحث العملاء عمّا تقدمه. نتتبّع كل حملة بالكامل عبر التحليلات وتتبّع التحويلات، ولأننا نبني المواقع والتطبيقات أيضاً، نستطيع إصلاح ما يمنع الزوار من التحوّل إلى عملاء.",
-    title: "التسويق الرقمي",
-    description: "حملات إعلانية وتحسين لمحركات البحث وإدارة للسوشيال ميديا والمحتوى — تحوّل الاهتمام إلى نمو قابل للقياس، مع تتبّع كامل للنتائج.",
-    tags: ["الإعلانات المدفوعة", "SEO", "السوشيال والمحتوى"],
   },
 };
 
@@ -378,11 +363,11 @@ export const PLATFORM_AR: Record<string, string> = {
 
 export const PROCESS_AR: TimelineItem[] = [
   { date: "الخطوة 01", title: "الاكتشاف", description: "نتعرّف على أعمالك وعملائك وأهدافك — ثم نحدد معايير النجاح بالأرقام." },
-  { date: "الخطوة 02", title: "الاستراتيجية والتخطيط", description: "خارطة طريق واضحة تشمل النطاق والتقنيات والجدول الزمني، وخطة التسويق التي ستجلب المستخدمين." },
+  { date: "الخطوة 02", title: "الاستراتيجية والتخطيط", description: "خارطة طريق واضحة تشمل النطاق والتقنيات والجدول الزمني ومراحل التسليم حتى الإطلاق." },
   { date: "الخطوة 03", title: "التصميم", description: "الهوية وتجربة المستخدم والواجهات تُصمَّم معاً وتُختبر مع مستخدمين حقيقيين قبل كتابة أي كود للإنتاج." },
   { date: "الخطوة 04", title: "التطوير والاختبار", description: "دورات عمل رشيقة مع عروض أسبوعية واختبارات آلية وشفافية كاملة في سير العمل." },
-  { date: "الخطوة 05", title: "الإطلاق والتسويق", description: "نطلق المنتج ونشغّل محرك النمو — تحسين محركات البحث والحملات والمحتوى، مع تتبّع كامل." },
-  { date: "مستمر", title: "الدعم والنمو", description: "صيانة وميزات جديدة وتحسين مستمر، لتواصل منتجاتك ونتائجك التحسّن." },
+  { date: "الخطوة 05", title: "الإطلاق", description: "ننشر المنتج على بيئة التشغيل، ونرفع التطبيقات على App Store وGoogle Play — ثم نتابع الأيام الأولى عن قرب." },
+  { date: "مستمر", title: "الدعم والتطوير", description: "صيانة وميزات جديدة وتحسين مستمر، ليواصل منتجك التحسّن." },
 ];
 
 export const processFor = (locale: Locale) => (locale === "ar" ? PROCESS_AR : PROCESS);

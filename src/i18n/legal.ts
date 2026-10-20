@@ -39,7 +39,7 @@ const en: LegalStrings = {
   menu: {
     allServices: "All services",
     servicesMenu: "Services menu",
-    overview: "Software, apps and marketing — designed, built and grown by one team.",
+    overview: "Software products and digital solutions — designed and built by one team.",
   },
   footer: { privacy: "Privacy", terms: "Terms", legalAria: "Legal" },
   page: {
@@ -61,7 +61,7 @@ const en: LegalStrings = {
       {
         heading: "Who we are",
         paragraphs: [
-          "ETQAN is a software development and digital marketing agency based in 6th of October, Giza, Egypt. We are responsible for the personal information described in this policy.",
+          "ETQAN is a software development and digital solutions company based in 6th of October, Giza, Egypt. We are responsible for the personal information described in this policy.",
           `For any privacy question or request, email ${LEGAL_EMAIL}.`,
         ],
       },
@@ -206,7 +206,7 @@ const en: LegalStrings = {
       {
         heading: "About these terms",
         paragraphs: [
-          "The website is operated by ETQAN, a software development and digital marketing agency based in 6th of October, Giza, Egypt.",
+          "The website is operated by ETQAN, a software development and digital solutions company based in 6th of October, Giza, Egypt.",
           "These terms cover the website only. Any project we carry out for you is governed by the separate written proposal or agreement we sign with you.",
         ],
       },
@@ -279,7 +279,7 @@ const ar: LegalStrings = {
   menu: {
     allServices: "كل الخدمات",
     servicesMenu: "قائمة الخدمات",
-    overview: "برمجيات وتطبيقات وتسويق — نصمّمها ونبنيها وننمّيها بفريق واحد.",
+    overview: "منتجات برمجية وحلول رقمية — نصمّمها ونبنيها بفريق واحد.",
   },
   footer: { privacy: "الخصوصية", terms: "شروط الاستخدام", legalAria: "روابط قانونية" },
   page: {
@@ -301,7 +301,7 @@ const ar: LegalStrings = {
       {
         heading: "من نحن",
         paragraphs: [
-          "إتقان وكالة لتطوير البرمجيات والتسويق الرقمي، مقرّها مدينة السادس من أكتوبر بمحافظة الجيزة في مصر، وهي المسؤولة عن البيانات الشخصية الموضّحة في هذه السياسة.",
+          "إتقان شركة لتطوير البرمجيات والحلول الرقمية، مقرّها مدينة السادس من أكتوبر بمحافظة الجيزة في مصر، وهي المسؤولة عن البيانات الشخصية الموضّحة في هذه السياسة.",
           `لأي استفسار أو طلب يتعلق بالخصوصية، راسلنا على ${LEGAL_EMAIL}.`,
         ],
       },
@@ -441,7 +441,7 @@ const ar: LegalStrings = {
       {
         heading: "عن هذه الشروط",
         paragraphs: [
-          "يُدار هذا الموقع من قِبل إتقان، وكالة لتطوير البرمجيات والتسويق الرقمي مقرّها مدينة السادس من أكتوبر بمحافظة الجيزة في مصر.",
+          "يُدار هذا الموقع من قِبل إتقان، شركة لتطوير البرمجيات والحلول الرقمية مقرّها مدينة السادس من أكتوبر بمحافظة الجيزة في مصر.",
           "تغطي هذه الشروط الموقع فقط. أما أي مشروع ننفّذه لك فيخضع للعرض أو الاتفاق المكتوب المستقل الذي نوقّعه معك.",
         ],
       },
