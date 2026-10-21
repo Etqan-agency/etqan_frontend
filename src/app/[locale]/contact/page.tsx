@@ -36,6 +36,9 @@ export default async function ContactPage({ params }: Params) {
   const channels = [
     { icon: MessageCircle, label: c.whatsapp, value: c.whatsappCta, href: contact.whatsapp, external: true, ltr: false },
     { icon: Phone, label: c.phone, value: contact.phone, href: `tel:${contact.phone.replace(/\s/g, "")}`, external: false, ltr: true },
+    ...(contact.ctoPhone
+      ? [{ icon: Phone, label: c.ctoPhone, value: contact.ctoPhone, href: `tel:${contact.ctoPhone.replace(/\s/g, "")}`, external: false, ltr: true }]
+      : []),
     { icon: Mail, label: c.email, value: contact.email, href: `mailto:${contact.email}`, external: false, ltr: true },
     { icon: MapPin, label: c.location, value: contact.address, href: MAPS_URL, external: true, ltr: false, extra: c.mapLink },
     { icon: Clock, label: c.hours, value: t.footer.hours, href: undefined, external: false, ltr: false },

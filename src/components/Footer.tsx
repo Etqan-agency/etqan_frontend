@@ -50,6 +50,9 @@ export default function Footer({
             <p className={heading}>{t.touch}</p>
             <ul className="mt-5 space-y-3 text-xs leading-relaxed text-white/80">
               <li><a href={`tel:${contact.phone.replace(/\s/g, "")}`} dir="ltr" className={link}>{contact.phone}</a></li>
+              {contact.ctoPhone && (
+                <li><a href={`tel:${contact.ctoPhone.replace(/\s/g, "")}`} dir="ltr" className={link}>CTO · {contact.ctoPhone}</a></li>
+              )}
               <li><a href={contact.whatsapp} target="_blank" rel="noreferrer" className={link}>{t.whatsapp}</a></li>
               <li>{contact.address}</li>
               <li>{t.hours}</li>

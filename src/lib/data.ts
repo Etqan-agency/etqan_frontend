@@ -10,6 +10,8 @@ export type Contact = {
   email: string;
   phone: string;
   whatsapp: string;
+  /** CTO direct line, shown next to the main number. */
+  ctoPhone?: string;
   address: string;
   socials: { label: string; href: string }[];
 };
@@ -73,8 +75,9 @@ export const SITE: SiteContent = {
     "Etqan means mastery — and it is how we work. Engineers and designers under one roof, building websites, apps and business software that perform, from the first idea to long-term support.",
   contact: {
     email: "admin@etqanpp.com",
-    phone: "+20 150 731 1232",
-    whatsapp: whatsappLink("+20 150 731 1232"),
+    phone: "+20 150 585 8198",
+    whatsapp: whatsappLink("+20 150 585 8198"),
+    ctoPhone: "+20 102 857 7310",
     address: "6th October, Giza, Egypt",
     // Official profiles; the dashboard's Settings → Social links override these when set.
     socials: [

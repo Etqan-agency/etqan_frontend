@@ -197,13 +197,14 @@ const en = {
     ctaText: "Tell us what you want to build. We'll come back with clear next steps.",
   },
   contactPage: {
-    metaTitle: "Contact ETQAN — 6th of October, Giza · WhatsApp 01507311232",
+    metaTitle: "Contact ETQAN — 6th of October, Giza · WhatsApp 01505858198",
     metaDescription:
-      "Talk to ETQAN about your website, app or software project. Call or WhatsApp 01507311232, email us, or send the form — based in 6th of October, Giza, Egypt.",
+      "Talk to ETQAN about your website, app or software project. Call or WhatsApp 01505858198, email us, or send the form — based in 6th of October, Giza, Egypt.",
     eyebrow: "Contact",
     h1: "Let's talk about your project.",
     intro: "Send the form, message us on WhatsApp or call — whichever is easiest. We work with businesses in Egypt, Saudi Arabia and the UAE, in Arabic and English.",
     phone: "Phone",
+    ctoPhone: "CTO direct line",
     whatsapp: "WhatsApp",
     whatsappCta: "Chat on WhatsApp",
     email: "Email",
