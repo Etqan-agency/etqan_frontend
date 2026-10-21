@@ -54,8 +54,8 @@ export default function About({ text, t, href }: { text: string; t: Dictionary["
           {[0, 1].map((dup) => (
             <div key={dup} aria-hidden={dup === 1} className="flex shrink-0 items-center">
               {VALUES.map((v) => (
-                <span key={v} className="flex items-center whitespace-nowrap text-6xl font-bold uppercase tracking-[-0.04em] md:text-[9rem]">
-                  <span className="px-8 md:px-14">{v}</span>
+                <span key={v} className="flex items-center whitespace-nowrap text-5xl font-bold uppercase tracking-[-0.04em] md:text-[6.5rem]">
+                  <span className="px-6 md:px-10">{v}</span>
                   <span className="text-accent">—</span>
                 </span>
               ))}

@@ -97,7 +97,6 @@ const ar: Dictionary = {
   contactBar: {
     whatsapp: "واتساب",
     call: "اتصل بنا",
-    aria: "تواصل مع إتقان عبر واتساب",
     prefill: "مرحباً إتقان، أودّ مناقشة مشروع. ({path})",
   },
   consent: {

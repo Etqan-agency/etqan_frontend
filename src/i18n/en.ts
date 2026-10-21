@@ -95,7 +95,6 @@ const en = {
   contactBar: {
     whatsapp: "WHATSAPP",
     call: "CALL US",
-    aria: "Chat with ETQAN on WhatsApp",
     prefill: "Hi ETQAN, I'd like to discuss a project. ({path})",
   },
   consent: {
