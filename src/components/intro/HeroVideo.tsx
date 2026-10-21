@@ -39,12 +39,12 @@ export default function HeroVideo() {
       {/* Soft back-glow */}
       <div
         aria-hidden
-        className="pointer-events-none absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white opacity-40 blur-[100px]"
+        className="pointer-events-none absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white opacity-40 mix-blend-multiply blur-[100px]"
       />
       <motion.div
         animate={{ y: [0, -10, 0] }}
         transition={{ duration: 6, ease: "easeInOut", repeat: Infinity }}
-        className="relative isolate aspect-[640/594] w-full overflow-hidden bg-background"
+        className="relative isolate aspect-[640/594] w-full overflow-hidden bg-white mix-blend-multiply"
         style={{
           // Spec'd radial fade, intersected with soft top/bottom fades so the frame edges never show
           maskImage: `${EDGE_FADE}, ${BOTTOM_FADE}`,
@@ -63,7 +63,7 @@ export default function HeroVideo() {
           aria-hidden
           className="absolute inset-0 h-full w-full object-cover brightness-[1.04] mix-blend-darken"
         />
-        {/* Deepest shadows settle on ETQAN navy; the white plate stays the page background */}
+        {/* Deepest shadows settle on ETQAN navy; the white plate is multiplied away, so the hero dots show through it */}
         <div aria-hidden className="absolute inset-0 bg-navy mix-blend-lighten" />
       </motion.div>
     </motion.div>

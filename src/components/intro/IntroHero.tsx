@@ -2,6 +2,7 @@
 
 import { MotionConfig, motion } from "framer-motion";
 import CTAButton from "./CTAButton";
+import HeroBackdrop from "./HeroBackdrop";
 import HeroBadge from "./HeroBadge";
 import HeroHeading from "./HeroHeading";
 import HeroVideo from "./HeroVideo";
@@ -12,7 +13,9 @@ import type { Dictionary } from "@/i18n";
 export default function IntroHero({ badge, subtitle, t }: { badge: string; subtitle: string; t: Dictionary["hero"] }) {
   return (
     <MotionConfig reducedMotion="user">
-      <section id="top" className="relative overflow-hidden bg-background px-6 pb-20 pt-36 md:pt-40">
+      <section id="top" className="relative isolate overflow-hidden bg-background px-6 pb-20 pt-36 md:pt-40">
+        {/* Dots fill the first screen and fade out at its bottom edge */}
+        <HeroBackdrop className="inset-x-0 top-0 h-svh [mask-image:linear-gradient(to_bottom,black_80%,transparent)]" />
         <motion.div
           variants={container}
           initial="hidden"

@@ -17,7 +17,9 @@
     "react-dom": "19.1.0",
     "react-icons": "^5.7.0",
     "react-markdown": "^9.1.0",
-    "remark-gfm": "^4.0.1"
+    "remark-gfm": "^4.0.1",
+    "three": "^0.134.0",
+    "vanta": "^0.5.24"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -25,6 +27,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/three": "^0.134.0",
     "eslint": "^9",
     "eslint-config-next": "15.5.26",
     "tailwindcss": "^4",
