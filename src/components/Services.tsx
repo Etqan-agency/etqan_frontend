@@ -2,9 +2,9 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import ServiceVisual from "./ServiceVisual";
 import type { Service } from "@/lib/data";
 import type { Dictionary } from "@/i18n";
 
@@ -28,7 +28,7 @@ export default function Services({
           <p className="text-[11px] font-medium uppercase tracking-[0.35em] text-muted">({String(services.length).padStart(2, "0")}) {t.countLabel}</p>
         </div>
 
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-x-16 lg:gap-y-10">
           <ul className="lg:col-span-5">
             {services.map((s, i) => {
               const isActive = i === active;
@@ -75,41 +75,40 @@ export default function Services({
             })}
           </ul>
 
-          <div className="hidden lg:col-span-7 lg:block">
-            <div className="sticky top-28">
-              <div className="relative aspect-[4/3] overflow-hidden rounded-sm bg-secondary">
-                <AnimatePresence mode="popLayout">
-                  <motion.div
-                    key={current.id}
-                    initial={{ opacity: 0, scale: 1.08 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 1.1, ease: EASE }}
-                    className="duotone absolute inset-0"
-                  >
-                    <Image src={current.image} alt={current.title} fill sizes="(min-width:1024px) 58vw, 100vw" className="object-cover" />
-                  </motion.div>
-                </AnimatePresence>
-              </div>
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={current.id}
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -16 }}
-                  transition={{ duration: 0.6, ease: EASE }}
-                  className="mt-8 grid grid-cols-7 gap-8"
-                >
-                  <p className="col-span-4 text-lg leading-relaxed">{current.description}</p>
-                  <ul className="col-span-3 space-y-2 text-[11px] font-medium uppercase tracking-widest text-muted">
-                    {current.tags.map((t) => <li key={t}><span className="text-accent">—</span> {t}</li>)}
-                  </ul>
-                  <Link href={`${servicesPath}/${current.slug}`} className="col-span-7 text-[11px] font-bold tracking-widest text-primary hover:underline">
-                    {learnMore} →
-                  </Link>
-                </motion.div>
-              </AnimatePresence>
-            </div>
+          {/* The visual spans exactly the list's height; the description gets its own row underneath */}
+          <div className="relative hidden overflow-hidden rounded-sm bg-navy lg:col-span-7 lg:block">
+            <AnimatePresence mode="popLayout">
+              <motion.div
+                key={current.id}
+                initial={{ opacity: 0, scale: 1.08 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 1.1, ease: EASE }}
+                className="absolute inset-0"
+              >
+                <ServiceVisual slug={current.slug} title={current.title} />
+              </motion.div>
+            </AnimatePresence>
+          </div>
+          <div className="hidden lg:col-span-7 lg:col-start-6 lg:block">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={current.id}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -16 }}
+                transition={{ duration: 0.6, ease: EASE }}
+                className="grid grid-cols-7 gap-8"
+              >
+                <p className="col-span-4 text-lg leading-relaxed">{current.description}</p>
+                <ul className="col-span-3 space-y-2 text-[11px] font-medium uppercase tracking-widest text-muted">
+                  {current.tags.map((t) => <li key={t}><span className="text-accent">—</span> {t}</li>)}
+                </ul>
+                <Link href={`${servicesPath}/${current.slug}`} className="col-span-7 text-[11px] font-bold tracking-widest text-primary hover:underline">
+                  {learnMore} →
+                </Link>
+              </motion.div>
+            </AnimatePresence>
           </div>
         </div>
       </div>

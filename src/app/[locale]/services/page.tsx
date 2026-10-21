@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import InnerPage from "@/components/detail/InnerPage";
 import Breadcrumbs from "@/components/detail/Breadcrumbs";
+import ServiceVisual from "@/components/ServiceVisual";
 import { getServices } from "@/lib/api";
 import { pageMetadata } from "@/lib/seo";
 import { isLocale, localePath, type Locale } from "@/i18n/config";
@@ -41,8 +41,8 @@ export default async function ServicesHub({ params }: Params) {
           {services.map((s) => (
             <li key={s.slug}>
               <Link href={localePath(locale, `/services/${s.slug}`)} className="group block">
-                <div className="duotone relative aspect-[4/3] overflow-hidden rounded-sm bg-secondary">
-                  <Image src={s.image} alt={s.title} fill sizes="(min-width:1280px) 30vw, (min-width:768px) 45vw, 100vw" className="object-cover transition-transform duration-700 ease-premium group-hover:scale-105" />
+                <div className="relative aspect-[4/3] overflow-hidden rounded-sm bg-navy">
+                  <ServiceVisual slug={s.slug} title={s.title} className="transition-transform duration-700 ease-premium group-hover:scale-105" />
                 </div>
                 <p className="mt-6 text-[11px] font-medium tracking-widest text-primary">{s.id}</p>
                 <h2 className="mt-2 text-3xl font-medium tracking-[-0.03em] transition-colors group-hover:text-primary md:text-4xl">{s.title}</h2>

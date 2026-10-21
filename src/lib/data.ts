@@ -19,7 +19,7 @@ export type SiteContent = { badge: string; subtitle: string; about: string; cont
 export type Seo = { metaTitle?: string; metaDescription?: string; ogImage?: string; noindex?: boolean; canonicalUrl?: string };
 export type GalleryImage = { src: string; width: number; height: number; alt: string };
 export type Service = {
-  id: string; slug: string; title: string; description: string; tags: string[]; image: string;
+  id: string; slug: string; title: string; description: string; tags: string[];
   /** Full page copy, paragraphs separated by blank lines. */
   longDescription?: string;
   seo?: Seo;
@@ -96,7 +96,6 @@ export const SERVICES: Service[] = [
     tags: ["Next.js & React", "E-commerce", "CMS"],
     slug: "web-development",
     longDescription: "Your website is often the first place a customer decides whether to trust you. We build fast, secure websites and web platforms — company sites, e-commerce stores, customer portals and SaaS products — on modern stacks like Next.js and React, with a content management system your team can use without a developer.\n\nEvery build is SEO-ready from day one: clean URLs, structured data, fast load times on mobile networks and bilingual Arabic/English support with proper right-to-left layouts. Every site also ships with analytics and conversion tracking set up, so you can see which pages bring in leads.",
-    image: "/images/services/web-development.webp",
   },
   {
     id: "02",
@@ -105,7 +104,6 @@ export const SERVICES: Service[] = [
     tags: ["iOS & Android", "Flutter", "React Native"],
     slug: "mobile-app-development",
     longDescription: "We build iOS and Android apps from one codebase with React Native and Flutter, so you launch on both stores faster and maintain one product instead of two. Our team has shipped production apps with push notifications, offline-friendly local storage, deep linking, media uploads and smooth animations — including an app used by 60,000+ people.\n\nWe handle the whole journey: UX and interface design, the app itself, the backend and APIs it needs, and store submission and launch. Arabic and English are supported from the start, with interfaces designed for right-to-left reading.",
-    image: "/images/services/mobile-app-development.webp",
   },
   {
     id: "03",
@@ -114,7 +112,6 @@ export const SERVICES: Service[] = [
     tags: ["ERP & CRM", "Integrations", "Cloud & DevOps"],
     slug: "custom-software-development",
     longDescription: "When spreadsheets and off-the-shelf tools stop keeping up, custom software fits the way your business actually works. We build dashboards, admin panels, internal tools, ERP and CRM-style systems, and the integrations that connect them to your store, payment gateway, suppliers and accounting.\n\nA large part of this work is business automation: replacing repetitive manual steps — order processing, data entry, status updates, reporting — with reliable workflows. Our team has built automation platforms that move orders between stores and suppliers at scale, with complex data flows across external APIs.",
-    image: "/images/services/custom-software-development.webp",
   },
   {
     id: "04",
@@ -123,7 +120,6 @@ export const SERVICES: Service[] = [
     tags: ["Brand Identity", "UI/UX", "Design Systems"],
     slug: "ui-ux-design-branding",
     longDescription: "Good design makes a product easy to use and a brand easy to remember. We create brand identities — logo, colour, typography and visual language — and design the interfaces of websites and apps around how your customers actually behave.\n\nWe design Arabic-first and bilingual interfaces properly: right-to-left layouts, Arabic typography and content that reads naturally, not a mirrored English design. Designs are delivered as reusable design systems, so your product stays consistent as it grows.",
-    image: "/images/services/ui-ux-design-branding.webp",
   },
 ];
 

@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import InnerPage from "@/components/detail/InnerPage";
 import Breadcrumbs from "@/components/detail/Breadcrumbs";
+import ServiceVisual from "@/components/ServiceVisual";
 import ProjectCard from "@/components/detail/ProjectCard";
 import Faqs from "@/components/detail/Faqs";
 import Process from "@/components/Process";
@@ -89,8 +89,8 @@ export default async function ServicePage({ params }: Params) {
               </div>
             </div>
             <div className="lg:col-span-5">
-              <div className="duotone relative aspect-[4/3] overflow-hidden rounded-sm bg-secondary">
-                <Image src={service.image} alt={service.title} fill priority sizes="(min-width:1024px) 40vw, 100vw" className="object-cover" />
+              <div className="relative aspect-[4/3] overflow-hidden rounded-sm bg-navy">
+                <ServiceVisual slug={service.slug} title={service.title} />
               </div>
             </div>
           </div>

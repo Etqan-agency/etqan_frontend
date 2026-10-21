@@ -122,7 +122,6 @@ function mapService(s: ApiService, i: number, locale: Locale): Service {
     title: s.title,
     description: s.short_description,
     tags: s.features ?? [],
-    image: s.image || `/images/services/${canonicalServiceSlug(s.slug)}.webp`,
     longDescription: s.long_description || SERVICES.find((x) => x.slug === canonicalServiceSlug(s.slug))?.longDescription,
     seo: seoOf(s),
     updatedAt: s.updated_at,
