@@ -42,6 +42,7 @@ const ar: Dictionary = {
   brands: { heading: "التقنيات التي نبني بها" },
   services: { heading: ["مجالات", "خبرتنا"], countLabel: "تخصصات" },
   work: {
+    scanLabel: "من التصميم إلى الكود",
     heading: ["أعمال", "مختارة"],
     countLabel: "مشاريع",
     viewCase: "عرض المشروع",

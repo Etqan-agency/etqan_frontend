@@ -13,7 +13,7 @@ import { getProjects, getServices, getSite } from "@/lib/api";
 import { processFor } from "@/lib/data";
 import { getNav } from "@/lib/nav";
 import { pageMetadata } from "@/lib/seo";
-import { isLocale, localePath } from "@/i18n/config";
+import { dirOf, isLocale, localePath } from "@/i18n/config";
 import { getDictionary } from "@/i18n";
 
 // Re-read content edited in the dashboard at most once a minute.
@@ -45,7 +45,7 @@ export default async function Home({ params }: Params) {
         <IntroHero badge={site.badge} subtitle={site.subtitle} t={t.hero} />
         <TrustedBrands heading={t.brands.heading} />
         <Services services={services} t={t.services} servicesPath={localePath(locale, "/services")} learnMore={t.detail.learnMore} />
-        <FeaturedWork projects={projects} t={t.work} projectsPath={localePath(locale, "/projects")} teamBadge={t.detail.teamBadge} viewAll={t.detail.allProjects} />
+        <FeaturedWork projects={projects} t={t.work} projectsPath={localePath(locale, "/projects")} teamBadge={t.detail.teamBadge} viewAll={t.detail.allProjects} dir={dirOf(locale)} />
         <About text={site.about} t={t.about} href={localePath(locale, "/about")} />
         <Process items={processFor(locale)} t={t.process} />
         <Contact contact={site.contact} services={services.map((s) => ({ slug: s.slug, title: s.title }))} t={t.contact} form={t.form} />

@@ -40,6 +40,7 @@ const en = {
   brands: { heading: "The technology behind our work" },
   services: { heading: ["Our", "Expertise"], countLabel: "Disciplines" },
   work: {
+    scanLabel: "From design to code",
     heading: ["Selected", "Work"],
     countLabel: "Projects",
     viewCase: "VIEW CASE",
