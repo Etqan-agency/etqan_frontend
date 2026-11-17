@@ -65,7 +65,7 @@ export default async function ProjectsHub({ params }: Params) {
                 <Link href={localePath(locale, "/contact")} data-cta="projects_hero_start" className="rounded-full border border-foreground px-7 py-4 transition-colors hover:border-primary hover:text-primary">{t.nav.cta}</Link>
               </div>
             </div>
-            <ol className="border-t border-foreground/15 md:me-16">
+            <ol className="border-t border-foreground/15">
               {groups.flatMap((g) => g.items).map((p, i) => (
                 <li key={p.id} className="border-b border-foreground/15">
                   <Link href={localePath(locale, `/projects/${p.id}`)} data-cta="projects_hero_index" className="group flex items-center gap-5 py-4 transition-colors hover:text-primary">
@@ -87,14 +87,14 @@ export default async function ProjectsHub({ params }: Params) {
       <div id="projects-list" className="scroll-mt-20" />
       {groups.map((g) => (
         <section key={g.key} className="border-t border-border px-6 py-16 md:px-10 md:py-24">
-          <div className="mx-auto max-w-[1600px]">
+          <div className="mx-auto max-w-[1520px]">
             <div className="mx-auto mb-10 max-w-3xl text-center">
               <h2 className="text-4xl font-medium leading-[0.95] tracking-[-0.04em] md:text-6xl">{g.title}</h2>
               {g.note && <p className="mt-5 leading-relaxed text-muted">{g.note}</p>}
             </div>
             <div className="flex flex-wrap justify-center gap-8">
               {g.items.map((p) => (
-                <div key={p.id} className="w-full lg:w-[calc(50%-1rem)]">
+                <div key={p.id} className="flex w-full lg:w-[calc(50%-1rem)]">
                   <ProjectCard
                     project={p}
                     href={localePath(locale, `/projects/${p.id}`)}

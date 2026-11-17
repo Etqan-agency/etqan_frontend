@@ -114,7 +114,7 @@ export default async function AuthorPage({ params }: Params) {
   return (
     <InnerPage locale={locale} path={path} withContact={false}>
       <section className="px-6 pb-16 pt-16 md:px-10 md:pb-24 md:pt-24">
-        <div className="mx-auto max-w-[1600px]">
+        <div className="mx-auto max-w-[1520px]">
           <Breadcrumbs
             items={[
               { name: t.detail.home, href: localePath(locale, "/") },
@@ -160,7 +160,7 @@ export default async function AuthorPage({ params }: Params) {
       </section>
 
       <section className="border-t border-border px-6 py-16 md:px-10 md:py-24">
-        <div className="mx-auto max-w-[1600px]">
+        <div className="mx-auto max-w-[1520px]">
           <h2 className="mb-10 text-4xl font-medium tracking-[-0.04em] md:text-5xl">{c.articles}</h2>
           {author.posts.length === 0 ? (
             <p className="text-lg text-muted">{c.noPosts}</p>

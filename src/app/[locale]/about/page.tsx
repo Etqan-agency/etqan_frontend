@@ -44,7 +44,7 @@ export default async function AboutPage({ params }: Params) {
     <InnerPage locale={locale} path="/about" withContact={false}>
       {/* Hero */}
       <section className="px-6 pb-20 pt-16 md:px-10 md:pb-28 md:pt-24">
-        <div className="mx-auto max-w-[1600px]">
+        <div className="mx-auto max-w-[1520px]">
           <Breadcrumbs items={[{ name: t.detail.home, href: p("/") }, { name: a.eyebrow, href: p("/about") }]} />
           <h1 className="mt-12 max-w-5xl text-5xl font-medium leading-[0.95] tracking-[-0.04em] md:text-8xl">{a.h1}</h1>
           <p className="mt-10 max-w-3xl text-xl leading-relaxed text-muted md:text-2xl">{a.intro}</p>
@@ -53,7 +53,7 @@ export default async function AboutPage({ params }: Params) {
 
       {/* Who we are */}
       <section className="border-t border-border px-6 py-24 md:px-10 md:py-32">
-        <div className="mx-auto grid max-w-[1600px] gap-10 md:grid-cols-12">
+        <div className="mx-auto grid max-w-[1520px] gap-10 md:grid-cols-12">
           <h2 className="text-[11px] font-medium uppercase tracking-[0.35em] text-primary md:col-span-3">{a.whoTitle}</h2>
           <p className="text-[clamp(1.6rem,3vw,3rem)] font-medium leading-[1.15] tracking-[-0.03em] md:col-span-9">{a.whoText}</p>
         </div>
@@ -61,7 +61,7 @@ export default async function AboutPage({ params }: Params) {
 
       {/* What we do */}
       <section className="border-t border-border px-6 py-24 md:px-10 md:py-32">
-        <div className="mx-auto max-w-[1600px]">
+        <div className="mx-auto max-w-[1520px]">
           <h2 className="mb-14 text-4xl font-medium leading-[0.95] tracking-[-0.04em] md:text-6xl">{a.whatTitle}</h2>
           <div className="grid gap-px overflow-hidden rounded-sm border border-border bg-border md:grid-cols-3">
             {a.capabilities.map((c, i) => (
@@ -83,7 +83,7 @@ export default async function AboutPage({ params }: Params) {
 
       {/* Why ETQAN */}
       <section className="border-t border-border px-6 py-24 md:px-10 md:py-32">
-        <div className="mx-auto max-w-[1600px]">
+        <div className="mx-auto max-w-[1520px]">
           <h2 className="mb-14 text-4xl font-medium leading-[0.95] tracking-[-0.04em] md:text-6xl">{a.whyTitle}</h2>
           <ul className="grid gap-10 md:grid-cols-2">
             {a.why.map((w) => (
@@ -101,7 +101,7 @@ export default async function AboutPage({ params }: Params) {
 
       {/* Mission & vision (dashboard Settings override the default copy) */}
       <section className="bg-navy px-6 py-24 text-white md:px-10 md:py-32">
-        <div className="mx-auto grid max-w-[1600px] gap-16 md:grid-cols-2">
+        <div className="mx-auto grid max-w-[1520px] gap-16 md:grid-cols-2">
           {[
             { title: a.missionTitle, text: mv.mission ?? a.mission },
             { title: a.visionTitle, text: mv.vision ?? a.vision },
@@ -117,7 +117,7 @@ export default async function AboutPage({ params }: Params) {
       {/* Team (only when members are added in the dashboard) */}
       {team.length > 0 && (
         <section className="border-t border-border px-6 py-24 md:px-10 md:py-32">
-          <div className="mx-auto max-w-[1600px]">
+          <div className="mx-auto max-w-[1520px]">
             <h2 className="mb-14 text-4xl font-medium leading-[0.95] tracking-[-0.04em] md:text-6xl">{a.teamTitle}</h2>
             <ul className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
               {team.map((m) => (

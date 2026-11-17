@@ -92,6 +92,10 @@ html[lang="ar"] :is(h1, h2, h3) { line-height: 1.3 !important; }
 /* Arabic needs a larger minimum size than the Latin micro-labels to stay legible. */
 html[lang="ar"] :is(.text-\[10px\], .text-\[11px\], .text-xs) { font-size: 0.8125rem; }
 
+/* Nothing may widen the page sideways (decorative blobs, the work belt, long words): a horizontal pan would
+   shift everything, the fixed header included. `clip` (not `hidden`) keeps position: sticky working. */
+html, body { overflow-x: clip; }
+
 /* Lenis */
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }

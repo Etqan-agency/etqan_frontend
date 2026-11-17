@@ -125,7 +125,7 @@ export default async function BlogPostPage({ params }: Params) {
 
       {related.length > 0 && (
         <section className="border-t border-border px-6 py-20 md:px-10 md:py-28">
-          <div className="mx-auto max-w-[1600px]">
+          <div className="mx-auto max-w-[1520px]">
             <h2 className="mb-10 text-4xl font-medium tracking-[-0.04em] md:text-5xl">{b.related}</h2>
             <ul className="grid gap-10 md:grid-cols-3">
               {related.map((p) => (

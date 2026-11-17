@@ -55,7 +55,7 @@ export default async function ContactPage({ params }: Params) {
   return (
     <InnerPage locale={locale} path="/contact" withContact={false}>
       <section className="px-6 pb-16 pt-16 md:px-10 md:pt-24">
-        <div className="mx-auto max-w-[1600px]">
+        <div className="mx-auto max-w-[1520px]">
           <Breadcrumbs items={[{ name: t.detail.home, href: localePath(locale, "/") }, { name: c.eyebrow, href: localePath(locale, "/contact") }]} />
           <h1 className="mt-12 max-w-4xl text-5xl font-medium leading-[0.95] tracking-[-0.04em] md:text-8xl">{c.h1}</h1>
           <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted md:text-xl">{c.intro}</p>
@@ -63,7 +63,7 @@ export default async function ContactPage({ params }: Params) {
       </section>
 
       <section className="px-4 pb-24 md:px-10">
-        <div className="mx-auto grid max-w-[1600px] gap-8 lg:grid-cols-12">
+        <div className="mx-auto grid max-w-[1520px] gap-8 lg:grid-cols-12">
           {/* Channels */}
           <ul className="space-y-px self-start overflow-hidden rounded-2xl border border-border bg-border lg:col-span-4">
             {channels.map(({ icon: Icon, label, value, href, external, ltr, extra }) => (
@@ -115,7 +115,7 @@ export default async function ContactPage({ params }: Params) {
       </section>
 
       <section className="border-t border-border px-6 py-20 md:px-10 md:py-28">
-        <div className="mx-auto max-w-[1600px]">
+        <div className="mx-auto max-w-[1520px]">
           <h2 className="mb-12 text-[11px] font-medium uppercase tracking-[0.35em] text-primary">{c.next}</h2>
           <ol className="grid gap-8 md:grid-cols-3">
             {t.thankYou.steps.map((s, i) => (

@@ -46,7 +46,7 @@ function TextBlock({ heading, text }: { heading: string; text?: string }) {
   if (!body.length) return null;
   return (
     <section className="border-t border-border px-6 py-20 md:px-10 md:py-28">
-      <div className="mx-auto grid max-w-[1600px] gap-10 md:grid-cols-12">
+      <div className="mx-auto grid max-w-[1520px] gap-10 md:grid-cols-12">
         <h2 className="text-[11px] font-medium uppercase tracking-[0.35em] text-primary md:col-span-3">{heading}</h2>
         <div className="space-y-6 text-xl leading-relaxed md:col-span-8 md:text-2xl">
           {body.map((p) => <p key={p.slice(0, 40)}>{p}</p>)}
@@ -97,7 +97,7 @@ export default async function ProjectPage({ params }: Params) {
   return (
     <InnerPage locale={locale} path={path}>
       <section className="px-6 pb-12 pt-16 md:px-10 md:pt-24">
-        <div className="mx-auto max-w-[1600px]">
+        <div className="mx-auto max-w-[1520px]">
           <Breadcrumbs items={[{ name: d.home, href: home }, { name: d.projects, href: hub }, { name: project.title, href: localePath(locale, path) }]} />
           <div className="mt-12 flex flex-wrap items-center gap-3">
             <p className="text-[11px] font-medium uppercase tracking-[0.3em] text-muted">{project.category}</p>
@@ -122,7 +122,7 @@ export default async function ProjectPage({ params }: Params) {
       {/* No banner for projects without approved screenshots: a name-only block would just repeat the H1. */}
       <div className="px-4 md:px-10">
         {project.image && (
-          <div className={`mx-auto flex max-w-[1600px] justify-center overflow-hidden rounded-2xl ${portrait ? "bg-navy py-12" : "bg-secondary"}`}>
+          <div className={`mx-auto flex max-w-[1520px] justify-center overflow-hidden rounded-2xl ${portrait ? "bg-navy py-12" : "bg-secondary"}`}>
             <Image
               src={project.image.src}
               alt={project.title}
@@ -139,7 +139,7 @@ export default async function ProjectPage({ params }: Params) {
       {/* Results: only real, measured numbers, always with their source */}
       {project.results && project.results.length > 0 && (
         <section className="px-6 py-20 md:px-10 md:py-24">
-          <dl className="mx-auto grid max-w-[1600px] gap-10 sm:grid-cols-2 lg:grid-cols-4">
+          <dl className="mx-auto grid max-w-[1520px] gap-10 sm:grid-cols-2 lg:grid-cols-4">
             {project.results.map((r) => (
               // A <dl> group may only hold <dt>/<dd>: the label comes first in the markup and is shown under the number.
               <div key={r.label} className="flex flex-col border-t border-border pt-6">
@@ -157,7 +157,7 @@ export default async function ProjectPage({ params }: Params) {
 
       {project.features.length > 0 && (
         <section className="border-t border-border px-6 py-20 md:px-10 md:py-28">
-          <div className="mx-auto grid max-w-[1600px] gap-10 md:grid-cols-12">
+          <div className="mx-auto grid max-w-[1520px] gap-10 md:grid-cols-12">
             <h2 className="text-[11px] font-medium uppercase tracking-[0.35em] text-primary md:col-span-3">{d.built}</h2>
             <ul className="space-y-5 text-xl leading-relaxed md:col-span-8 md:text-2xl">
               {project.features.map((f) => <li key={f} className="flex gap-4"><span className="text-accent">—</span>{f}</li>)}
@@ -168,7 +168,7 @@ export default async function ProjectPage({ params }: Params) {
 
       {project.gallery && project.gallery.length > 0 && (
         <section className="border-t border-border px-6 py-20 md:px-10 md:py-28">
-          <div className="mx-auto max-w-[1600px]">
+          <div className="mx-auto max-w-[1520px]">
             <h2 className="mb-10 text-[11px] font-medium uppercase tracking-[0.35em] text-primary">{d.screenshots}</h2>
             <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {project.gallery.map((g) => (
@@ -187,7 +187,7 @@ export default async function ProjectPage({ params }: Params) {
 
       {tech.length > 0 && (
         <section className="border-t border-border px-6 py-20 md:px-10 md:py-28">
-          <div className="mx-auto grid max-w-[1600px] gap-10 md:grid-cols-12">
+          <div className="mx-auto grid max-w-[1520px] gap-10 md:grid-cols-12">
             <h2 className="text-[11px] font-medium uppercase tracking-[0.35em] text-primary md:col-span-3">{d.technologies}</h2>
             <ul className="flex flex-wrap gap-3 md:col-span-8" dir="ltr">
               {tech.map((x) => <li key={x} className="rounded-full border border-border px-5 py-3 text-base">{x}</li>)}
@@ -210,7 +210,7 @@ export default async function ProjectPage({ params }: Params) {
       )}
 
       <section className="border-t border-border px-6 py-20 md:px-10 md:py-28">
-        <div className="mx-auto flex max-w-[1600px] flex-col gap-12 md:flex-row md:items-end md:justify-between">
+        <div className="mx-auto flex max-w-[1520px] flex-col gap-12 md:flex-row md:items-end md:justify-between">
           {usedServices.length > 0 && (
             <div>
               <h2 className="text-[11px] font-medium uppercase tracking-[0.35em] text-muted">{d.servicesUsed}</h2>
@@ -243,7 +243,7 @@ export default async function ProjectPage({ params }: Params) {
 
       {next && (
         <Link href={localePath(locale, `/projects/${next.id}`)} className="group block border-t border-border px-6 py-20 md:px-10 md:py-28">
-          <div className="mx-auto flex max-w-[1600px] items-end justify-between gap-6">
+          <div className="mx-auto flex max-w-[1520px] items-end justify-between gap-6">
             <div>
               <p className="text-[11px] font-medium uppercase tracking-[0.35em] text-muted">{d.nextProject}</p>
               <p className="mt-4 text-5xl font-medium tracking-[-0.04em] transition-colors group-hover:text-primary md:text-8xl">{next.title}</p>

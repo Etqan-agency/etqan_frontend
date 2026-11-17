@@ -30,14 +30,14 @@ export default async function ServicesHub({ params }: Params) {
   return (
     <InnerPage locale={locale} path="/services">
       <section className="px-6 pb-16 pt-16 md:px-10 md:pt-24">
-        <div className="mx-auto max-w-[1600px]">
+        <div className="mx-auto max-w-[1520px]">
           <Breadcrumbs items={[{ name: d.home, href: localePath(locale, "/") }, { name: d.services, href: localePath(locale, "/services") }]} />
           <h1 className="mt-12 max-w-5xl text-5xl font-medium leading-[0.95] tracking-[-0.04em] md:text-8xl">{d.servicesTitle}</h1>
           <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted md:text-xl">{d.servicesIntro}</p>
         </div>
       </section>
       <section id="services-list" className="border-t border-border px-6 py-16 md:px-10 md:py-24">
-        <ul className="mx-auto grid max-w-[1600px] gap-8 md:grid-cols-2 xl:grid-cols-3">
+        <ul className="mx-auto grid max-w-[1520px] gap-8 md:grid-cols-2 xl:grid-cols-3">
           {services.map((s) => (
             <li key={s.slug}>
               <Link href={localePath(locale, `/services/${s.slug}`)} className="group block">

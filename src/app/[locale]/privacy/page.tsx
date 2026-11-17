@@ -38,7 +38,7 @@ export default async function PrivacyPage({ params }: Params) {
   return (
     <InnerPage locale={locale} path={PATH} withContact={false}>
       <section className="px-6 pb-16 pt-16 md:px-10 md:pb-20 md:pt-24">
-        <div className="mx-auto max-w-[1600px]">
+        <div className="mx-auto max-w-[1520px]">
           <Breadcrumbs items={[{ name: t.detail.home, href: localePath(locale, "/") }, { name: d.eyebrow, href: localePath(locale, PATH) }]} />
           <h1 className="mt-12 max-w-5xl text-5xl font-medium leading-[0.95] tracking-[-0.04em] md:text-8xl">{d.h1}</h1>
           <p className="mt-10 max-w-3xl text-lg leading-relaxed text-muted md:text-xl">{d.intro}</p>
@@ -49,7 +49,7 @@ export default async function PrivacyPage({ params }: Params) {
       </section>
 
       <section className="border-t border-border px-6 py-20 md:px-10 md:py-28">
-        <div className="mx-auto grid max-w-[1600px] gap-12 lg:grid-cols-12">
+        <div className="mx-auto grid max-w-[1520px] gap-12 lg:grid-cols-12">
           <nav aria-label={pg.contents} className="hidden lg:col-span-3 lg:block">
             <div className="sticky top-32">
               <p className="text-[11px] font-medium uppercase tracking-[0.35em] text-primary">{pg.contents}</p>

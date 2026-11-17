@@ -50,7 +50,7 @@ export default async function BlogIndex({ params }: Params) {
   return (
     <InnerPage locale={locale} path="/blog">
       <section className="px-6 pb-16 pt-16 md:px-10 md:pt-24">
-        <div className="mx-auto max-w-[1600px]">
+        <div className="mx-auto max-w-[1520px]">
           <Breadcrumbs items={[{ name: t.detail.home, href: localePath(locale, "/") }, { name: b.eyebrow, href: localePath(locale, "/blog") }]} />
           <h1 className="mt-12 max-w-5xl text-5xl font-medium leading-[0.95] tracking-[-0.04em] md:text-8xl">{b.h1}</h1>
           <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted md:text-xl">{b.intro}</p>
@@ -58,9 +58,9 @@ export default async function BlogIndex({ params }: Params) {
       </section>
       <section className="border-t border-border px-6 py-16 md:px-10 md:py-24">
         {posts.length === 0 ? (
-          <p className="mx-auto max-w-[1600px] text-lg text-muted">{b.empty}</p>
+          <p className="mx-auto max-w-[1520px] text-lg text-muted">{b.empty}</p>
         ) : (
-          <ul className="mx-auto grid max-w-[1600px] gap-12 md:grid-cols-2 xl:grid-cols-3">
+          <ul className="mx-auto grid max-w-[1520px] gap-12 md:grid-cols-2 xl:grid-cols-3">
             {posts.map((p) => (
               <li key={p.slug}>
                 <Link href={localePath(locale, `/blog/${p.slug}`)} className="group block">

@@ -10,7 +10,7 @@ export default function Faqs({ heading, faqs }: { heading: string; faqs: Faq[] }
   };
   return (
     <section className="border-t border-border px-6 py-24 md:px-10 md:py-32">
-      <div className="mx-auto grid max-w-[1600px] gap-12 md:grid-cols-12">
+      <div className="mx-auto grid max-w-[1520px] gap-12 md:grid-cols-12">
         <h2 className="text-4xl font-medium leading-[0.95] tracking-[-0.04em] md:col-span-4 md:text-6xl">{heading}</h2>
         <div className="md:col-span-8">
           {faqs.map((f) => (

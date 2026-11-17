@@ -76,7 +76,7 @@ export default async function ServicePage({ params }: Params) {
     <InnerPage locale={locale} path={path}>
       {/* Hero */}
       <section className="px-6 pb-16 pt-16 md:px-10 md:pb-24 md:pt-24">
-        <div className="mx-auto max-w-[1600px]">
+        <div className="mx-auto max-w-[1520px]">
           <Breadcrumbs items={[{ name: d.home, href: home }, { name: d.services, href: servicesHub }, { name: service.title, href: localePath(locale, path) }]} />
           <div className="mt-12 grid gap-12 lg:grid-cols-12 lg:items-end">
             <div className="lg:col-span-7">
@@ -100,7 +100,7 @@ export default async function ServicePage({ params }: Params) {
       {/* Overview (dashboard long description) */}
       {body.length > 0 && (
         <section className="border-t border-border px-6 py-24 md:px-10 md:py-32">
-          <div className="mx-auto grid max-w-[1600px] gap-12 md:grid-cols-12">
+          <div className="mx-auto grid max-w-[1520px] gap-12 md:grid-cols-12">
             <h2 className="text-[11px] font-medium uppercase tracking-[0.35em] text-muted md:col-span-3">{d.overview}</h2>
             <div className="space-y-6 text-xl leading-relaxed md:col-span-9 md:text-2xl">
               {body.map((p) => <p key={p.slice(0, 40)}>{p}</p>)}
@@ -112,7 +112,7 @@ export default async function ServicePage({ params }: Params) {
       {/* What's included */}
       {service.tags.length > 0 && (
         <section className="border-t border-border px-6 py-24 md:px-10 md:py-32">
-          <div className="mx-auto grid max-w-[1600px] gap-12 md:grid-cols-12">
+          <div className="mx-auto grid max-w-[1520px] gap-12 md:grid-cols-12">
             <h2 className="text-4xl font-medium leading-[0.95] tracking-[-0.04em] md:col-span-4 md:text-6xl">{d.included}</h2>
             <ul className="grid gap-px overflow-hidden rounded-sm border border-border bg-border sm:grid-cols-2 md:col-span-8">
               {service.tags.map((tag, i) => (
@@ -129,7 +129,7 @@ export default async function ServicePage({ params }: Params) {
       {/* Related work */}
       {related.length > 0 && (
         <section className="border-t border-border px-6 py-24 md:px-10 md:py-32">
-          <div className="mx-auto max-w-[1600px]">
+          <div className="mx-auto max-w-[1520px]">
             <h2 className="mb-12 text-4xl font-medium leading-[0.95] tracking-[-0.04em] md:text-6xl">{d.relatedWork}</h2>
             <div className="grid gap-8 lg:grid-cols-2">
               {related.map((p) => (
@@ -146,7 +146,7 @@ export default async function ServicePage({ params }: Params) {
 
       {/* Other services */}
       <section className="border-t border-border px-6 py-24 md:px-10 md:py-32">
-        <div className="mx-auto max-w-[1600px]">
+        <div className="mx-auto max-w-[1520px]">
           <h2 className="mb-10 text-[11px] font-medium uppercase tracking-[0.35em] text-muted">{d.otherServices}</h2>
           <ul>
             {others.map((s) => (

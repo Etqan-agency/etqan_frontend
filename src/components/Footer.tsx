@@ -20,7 +20,7 @@ export default function Footer({
   const a11y = getDictionary(locale).a11y;
   return (
     <footer className="border-t border-white/10 bg-navy px-6 pb-24 pt-20 text-white md:px-10 md:pb-10">
-      <div className="mx-auto max-w-[1600px]">
+      <div className="mx-auto max-w-[1520px]">
         <div className="grid grid-cols-2 gap-12 md:grid-cols-12">
           <div className="col-span-2 md:col-span-4">
             <Logo variant="white" className="h-7 w-auto" />
