@@ -185,15 +185,18 @@ function localizeProject(p: Project, locale: Locale): Project {
 }
 
 function mapProject(p: ApiProject, locale: Locale): Project {
+  // The built-in projects carry hand-written labels ("Web Platform · Education · SaaS", "iOS & Android")
+  // that the API has no field for; keep them rather than replacing them with the raw tech stack.
+  const curated = PROJECTS.find((x) => x.id === p.slug);
   const base: Project = {
     id: p.slug,
     title: p.title,
-    category: (p.tech_stack ?? []).join(" · ") || p.category_display,
-    platform: p.category_display,
+    category: curated?.category || (p.tech_stack ?? []).join(" · ") || p.category_display,
+    platform: curated?.platform || p.category_display,
     image: p.cover_image ? { src: p.cover_image, width: p.cover_width ?? 1600, height: p.cover_height ?? 900 } : undefined,
     summary: p.summary,
     features: lines(p.description),
-    scope: p.tech_stack ?? [],
+    scope: curated?.scope?.length ? curated.scope : p.tech_stack ?? [],
     liveUrl: p.live_url || undefined,
     services: p.services?.map((s) => s.slug) ?? [],
     challenge: p.challenge || undefined,
@@ -237,13 +240,14 @@ function mapProject(p: ApiProject, locale: Locale): Project {
     features: p.description_ar?.trim() ? lines(p.description_ar) : fallback.features,
     scope: pickList(tech, fallback.scope),
     category: tech.length ? tech.join(" · ") : fallback.category,
-    platform: PLATFORM_AR[p.category_display] ?? fallback.platform,
+    platform: PROJECTS_AR[p.slug]?.platform || PLATFORM_AR[p.category_display] || fallback.platform,
     contribution: pick(p.contribution_ar, fallback.contribution) || undefined,
     // Long-form case-study text is shown in Arabic only when it has been translated.
     challenge: p.challenge_ar?.trim() || undefined,
     solution: p.solution_ar?.trim() || undefined,
     architecture: p.architecture_ar?.trim() || undefined,
-    results: p.results_ar ?? [],
+    // The API always sends `results_ar` (an empty list until translated): fall back to the built-in Arabic results.
+    results: p.results_ar?.length ? p.results_ar : fallback.results ?? [],
     industry: p.industry_ar || undefined,
     country: p.country_ar || undefined,
     duration: p.duration_ar || undefined,
