@@ -11,7 +11,7 @@ import { redirectOrNotFound } from "@/lib/redirects";
 import { absoluteUrl, jsonLd, pageMetadata } from "@/lib/seo";
 import { SITE_URL } from "@/lib/site";
 import { isLocale, localePath, type Locale } from "@/i18n/config";
-import { getDictionary } from "@/i18n";
+import { getCopy } from "@/i18n";
 import { formatDate } from "@/lib/format";
 
 export const revalidate = 60;
@@ -50,7 +50,7 @@ export default async function BlogPostPage({ params }: Params) {
   const [post, all] = await Promise.all([getPost(slug, locale), getPosts(locale)]);
   if (!post) return redirectOrNotFound(locale, `/blog/${slug}`);
 
-  const t = getDictionary(locale);
+  const t = await getCopy(locale);
   const b = t.blog;
   const path = `/blog/${post.slug}`;
   const authorPath = post.byline?.slug ? `/authors/${post.byline.slug}` : undefined;

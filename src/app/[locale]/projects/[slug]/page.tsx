@@ -10,7 +10,7 @@ import { redirectOrNotFound } from "@/lib/redirects";
 import { absoluteUrl, jsonLd, pageMetadata } from "@/lib/seo";
 import { SITE_URL } from "@/lib/site";
 import { isLocale, localePath, type Locale } from "@/i18n/config";
-import { getDictionary } from "@/i18n";
+import { getCopy } from "@/i18n";
 
 export const revalidate = 60;
 
@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   if (!isLocale(locale)) return {};
   const p = await getProject(slug, locale);
   if (!p) return {};
-  const d = getDictionary(locale).detail;
+  const d = (await getCopy(locale)).detail;
   const kind = p.ownership === "team" ? d.teamBadge : d.etqanProjects;
   return pageMetadata({
     locale,
@@ -63,7 +63,7 @@ export default async function ProjectPage({ params }: Params) {
   const [project, projects, services] = await Promise.all([getProject(slug, locale), getProjects(locale), getServices(locale)]);
   if (!project) return redirectOrNotFound(locale, `/projects/${slug}`);
 
-  const d = getDictionary(locale).detail;
+  const d = (await getCopy(locale)).detail;
   const path = `/projects/${project.id}`;
   const home = localePath(locale, "/");
   const hub = localePath(locale, "/projects");

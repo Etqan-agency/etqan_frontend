@@ -4,8 +4,8 @@ import InnerPage from "@/components/detail/InnerPage";
 import Breadcrumbs from "@/components/detail/Breadcrumbs";
 import { pageMetadata } from "@/lib/seo";
 import { isLocale, localePath, type Locale } from "@/i18n/config";
-import { getDictionary } from "@/i18n";
-import { getLegal, LEGAL_EMAIL, LEGAL_UPDATED_ISO } from "@/i18n/legal";
+import { getCopy, getLegalCopy } from "@/i18n";
+import { LEGAL_EMAIL, LEGAL_UPDATED_ISO } from "@/i18n/legal";
 
 const PATH = "/privacy";
 
@@ -14,7 +14,7 @@ type Params = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { locale } = await params;
   if (!isLocale(locale)) return {};
-  const d = getLegal(locale).privacy;
+  const d = (await getLegalCopy(locale)).privacy;
   return pageMetadata({ locale, path: PATH, title: d.metaTitle, description: d.metaDescription, absoluteTitle: true });
 }
 
@@ -30,8 +30,8 @@ export default async function PrivacyPage({ params }: Params) {
   const { locale: raw } = await params;
   if (!isLocale(raw)) notFound();
   const locale: Locale = raw;
-  const t = getDictionary(locale);
-  const legal = getLegal(locale);
+  const t = await getCopy(locale);
+  const legal = await getLegalCopy(locale);
   const d = legal.privacy;
   const pg = legal.page;
 

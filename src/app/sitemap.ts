@@ -56,7 +56,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 async function getSitemapAuthors(): Promise<{ slug: string; updated_at?: string }[]> {
   if (!API_URL) return [];
   try {
-    const res = await fetch(`${API_URL}/sitemap/`, { next: { revalidate: 3600, tags: [API_CACHE_TAG] } });
+    const res = await fetch(`${API_URL}/sitemap/`, { signal: AbortSignal.timeout(10_000), next: { revalidate: 3600, tags: [API_CACHE_TAG] } });
     if (!res.ok) return [];
     const data = (await res.json()) as { authors?: { slug: string; updated_at?: string }[] };
     return data.authors ?? [];

@@ -7,7 +7,7 @@ import ServiceVisual from "@/components/ServiceVisual";
 import { getServices } from "@/lib/api";
 import { pageMetadata } from "@/lib/seo";
 import { isLocale, localePath, type Locale } from "@/i18n/config";
-import { getDictionary } from "@/i18n";
+import { getCopy } from "@/i18n";
 
 export const revalidate = 60;
 
@@ -16,7 +16,7 @@ type Params = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { locale } = await params;
   if (!isLocale(locale)) return {};
-  const d = getDictionary(locale).detail;
+  const d = (await getCopy(locale)).detail;
   return pageMetadata({ locale, path: "/services", title: d.servicesTitle, description: d.servicesIntro });
 }
 
@@ -24,7 +24,7 @@ export default async function ServicesHub({ params }: Params) {
   const { locale: raw } = await params;
   if (!isLocale(raw)) notFound();
   const locale: Locale = raw;
-  const d = getDictionary(locale).detail;
+  const d = (await getCopy(locale)).detail;
   const services = await getServices(locale);
 
   return (

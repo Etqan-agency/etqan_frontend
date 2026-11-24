@@ -4,6 +4,13 @@ import {
   type Faq, type Project, type Result, type Seo, type Service, type SiteContent,
 } from "./data";
 
+/*
+ * Fallback rule: the built-in content in data.ts is used only when the API can't be reached (no API URL,
+ * network error, 5xx). When the API answers, its answer is the truth: an empty list stays empty and a
+ * cleared field stays cleared, and an Arabic field the team hasn't translated falls back to the
+ * dashboard's English value, exactly like the API's own `?lang=ar`.
+ */
+
 /** Public byline of a blog post; `slug` is set when the author has a profile page (/authors/<slug>). */
 export type PostAuthor = { name: string; slug?: string; role?: string; photo?: string; bio?: string; sameAs: string[] };
 
@@ -73,6 +80,7 @@ type ApiPost = ApiSeo & {
   title_ar?: string; excerpt_ar?: string; body_ar?: string; meta_title_ar?: string; meta_description_ar?: string;
 };
 type ApiSettings = {
+  hero_title?: string; hero_title_ar?: string;
   hero_subtitle: string; announcement_text: string; company_about: string;
   mission?: string; vision?: string; mission_ar?: string; vision_ar?: string;
   contact_email: string; contact_phone: string; address: string; social_links: Record<string, string>;
@@ -83,7 +91,7 @@ type ApiFaq = { question: string; answer: string };
 async function get<T>(path: string): Promise<T | null> {
   if (!API_URL) return null;
   try {
-    const res = await fetch(`${API_URL}${path}`, { next: { revalidate: REVALIDATE, tags: [API_CACHE_TAG] } });
+    const res = await fetch(`${API_URL}${path}`, { signal: AbortSignal.timeout(10_000), next: { revalidate: REVALIDATE, tags: [API_CACHE_TAG] } });
     if (res.status === 404) return null;
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     return (await res.json()) as T;
@@ -122,32 +130,30 @@ function mapService(s: ApiService, i: number, locale: Locale): Service {
     title: s.title,
     description: s.short_description,
     tags: s.features ?? [],
-    longDescription: s.long_description || SERVICES.find((x) => x.slug === canonicalServiceSlug(s.slug))?.longDescription,
+    longDescription: s.long_description || undefined,
     seo: seoOf(s),
     updatedAt: s.updated_at,
   };
   if (locale !== "ar") return base;
-  const fallback = localizeService(base, "ar");
   return {
     ...base,
-    title: pick(s.title_ar, fallback.title),
-    description: pick(s.short_description_ar, fallback.description),
-    tags: pickList(s.features_ar, fallback.tags),
-    // Never show English body copy on an Arabic page.
-    longDescription: pick(s.long_description_ar, fallback.longDescription) || undefined,
+    title: pick(s.title_ar, s.title),
+    description: pick(s.short_description_ar, s.short_description),
+    tags: pickList(s.features_ar, s.features),
+    longDescription: pick(s.long_description_ar, s.long_description) || undefined,
   };
 }
 
 export async function getServices(locale: Locale = "en"): Promise<Service[]> {
   const data = await get<Paginated<ApiService>>("/services/?page_size=100");
-  if (!data?.results.length) return SERVICES.map((s) => localizeService(s, locale));
-  return data.results.map((s, i) => mapService(s, i, locale));
+  if (!data) return SERVICES.map((s) => localizeService(s, locale));
+  return (data.results ?? []).map((s, i) => mapService(s, i, locale));
 }
 
 export async function getService(slug: string, locale: Locale = "en"): Promise<Service | null> {
   if (API_URL) {
     try {
-      const res = await fetch(`${API_URL}/services/${encodeURIComponent(slug)}/`, { next: { revalidate: REVALIDATE, tags: [API_CACHE_TAG] } });
+      const res = await fetch(`${API_URL}/services/${encodeURIComponent(slug)}/`, { signal: AbortSignal.timeout(10_000), next: { revalidate: REVALIDATE, tags: [API_CACHE_TAG] } });
       // 404 = renamed or removed: let the caller redirect/404 rather than serving a stale copy.
       if (res.status === 404) return null;
       if (res.ok) {
@@ -165,8 +171,8 @@ export async function getService(slug: string, locale: Locale = "en"): Promise<S
 
 /* ----------------------------- Projects ----------------------------- */
 
+/** Built-in project for a locale (only used while the API is unreachable). */
 function localizeProject(p: Project, locale: Locale): Project {
-  // Fill fields the dashboard hasn't filled yet from the built-in content for the same project.
   const local = PROJECTS.find((x) => x.id === p.id);
   const filled: Project = {
     ...p,
@@ -185,32 +191,52 @@ function localizeProject(p: Project, locale: Locale): Project {
 }
 
 function mapProject(p: ApiProject, locale: Locale): Project {
-  const base: Project = {
+  const ar = locale === "ar";
+  // With `?lang=ar` the API already swaps in Arabic twins (English when blank); `tr` keeps that rule.
+  const tr = (en?: string, arabic?: string) => (ar ? pick(arabic, en) : en ?? "");
+  const tech = ar ? pickList(p.tech_stack_ar, p.tech_stack) : p.tech_stack ?? [];
+  // The built-in projects carry hand-written labels ("Web Platform · Education · SaaS", "iOS & Android")
+  // that the API has no field for; keep them rather than replacing them with the raw tech stack.
+  const curated = PROJECTS.find((x) => x.id === p.slug);
+  const curatedAr = PROJECTS_AR[p.slug];
+  const platform = ar
+    ? curatedAr?.platform || PLATFORM_AR[p.category_display] || p.category_display
+    : curated?.platform || p.category_display;
+  const title = tr(p.title, p.title_ar);
+  // The API always sends `results_ar` (an empty list until translated): fall back to the built-in Arabic results.
+  const results = ar
+    ? p.results_ar?.length
+      ? p.results_ar
+      : curatedAr?.results?.length
+        ? curatedAr.results
+        : p.results ?? []
+    : p.results ?? [];
+  return {
     id: p.slug,
-    title: p.title,
-    category: (p.tech_stack ?? []).join(" · ") || p.category_display,
-    platform: p.category_display,
+    title,
+    category: ar ? tech.join(" · ") || curatedAr?.category || platform : curated?.category || tech.join(" · ") || platform,
+    platform,
     image: p.cover_image ? { src: p.cover_image, width: p.cover_width ?? 1600, height: p.cover_height ?? 900 } : undefined,
-    summary: p.summary,
-    features: lines(p.description),
-    scope: p.tech_stack ?? [],
+    summary: tr(p.summary, p.summary_ar),
+    features: lines(tr(p.description, p.description_ar)),
+    scope: !ar && curated?.scope?.length ? curated.scope : tech,
     liveUrl: p.live_url || undefined,
     services: p.services?.map((s) => s.slug) ?? [],
-    challenge: p.challenge || undefined,
-    solution: p.solution || undefined,
-    architecture: p.architecture || undefined,
-    results: p.results ?? [],
-    industry: p.industry || undefined,
-    country: p.country || undefined,
-    duration: p.duration || undefined,
+    challenge: tr(p.challenge, p.challenge_ar) || undefined,
+    solution: tr(p.solution, p.solution_ar) || undefined,
+    architecture: tr(p.architecture, p.architecture_ar) || undefined,
+    results,
+    industry: tr(p.industry, p.industry_ar) || undefined,
+    country: tr(p.country, p.country_ar) || undefined,
+    duration: tr(p.duration, p.duration_ar) || undefined,
     year: p.year ?? null,
     testimonial: p.testimonial
       ? { quote: p.testimonial.quote, author: p.testimonial.author_name, role: p.testimonial.author_role, avatar: p.testimonial.avatar ?? undefined }
       : null,
     seo: seoOf(p),
     ownership: p.ownership ?? "etqan",
-    contribution: p.contribution || undefined,
-    technologies: p.tech_stack ?? [],
+    contribution: tr(p.contribution, p.contribution_ar) || undefined,
+    technologies: tech,
     playStoreUrl: p.play_store_url || undefined,
     appStoreUrl: p.app_store_url || undefined,
     featured: p.is_featured ?? false,
@@ -222,46 +248,23 @@ function mapProject(p: ApiProject, locale: Locale): Project {
         src: g.image,
         width: g.width ?? 900,
         height: g.height ?? 1600,
-        alt:
-          (locale === "ar" ? g.caption_ar || GALLERY_ALT_AR[p.slug]?.[i] : g.caption) ||
-          `${p.title} — ${i + 1}`,
+        alt: (ar ? pick(g.caption_ar, g.caption) : g.caption) || `${title} — ${i + 1}`,
       })),
-  };
-  if (locale !== "ar") return localizeProject(base, "en");
-  const fallback = localizeProject(base, "ar");
-  const tech = p.tech_stack_ar ?? [];
-  return {
-    ...fallback,
-    title: pick(p.title_ar, p.title),
-    summary: pick(p.summary_ar, fallback.summary),
-    features: p.description_ar?.trim() ? lines(p.description_ar) : fallback.features,
-    scope: pickList(tech, fallback.scope),
-    category: tech.length ? tech.join(" · ") : fallback.category,
-    platform: PLATFORM_AR[p.category_display] ?? fallback.platform,
-    contribution: pick(p.contribution_ar, fallback.contribution) || undefined,
-    // Long-form case-study text is shown in Arabic only when it has been translated.
-    challenge: p.challenge_ar?.trim() || undefined,
-    solution: p.solution_ar?.trim() || undefined,
-    architecture: p.architecture_ar?.trim() || undefined,
-    results: p.results_ar ?? [],
-    industry: p.industry_ar || undefined,
-    country: p.country_ar || undefined,
-    duration: p.duration_ar || undefined,
   };
 }
 
 export async function getProjects(locale: Locale = "en"): Promise<Project[]> {
   const data = await get<Paginated<ApiProject>>(`/projects/?page_size=100${langParam(locale, "&")}`);
-  if (!data?.results.length) return PROJECTS.map((p) => localizeProject(p, locale));
+  if (!data) return PROJECTS.map((p) => localizeProject(p, locale));
   // Featured projects lead (dashboard "featured" flag), otherwise keep the dashboard order.
-  const mapped = data.results.map((p) => mapProject(p, locale));
+  const mapped = (data.results ?? []).map((p) => mapProject(p, locale));
   return [...mapped.filter((p) => p.featured), ...mapped.filter((p) => !p.featured)];
 }
 
 export async function getProject(slug: string, locale: Locale = "en"): Promise<Project | null> {
   if (API_URL) {
     try {
-      const res = await fetch(`${API_URL}/projects/${encodeURIComponent(slug)}/${langParam(locale, "?")}`, { next: { revalidate: REVALIDATE, tags: [API_CACHE_TAG] } });
+      const res = await fetch(`${API_URL}/projects/${encodeURIComponent(slug)}/${langParam(locale, "?")}`, { signal: AbortSignal.timeout(10_000), next: { revalidate: REVALIDATE, tags: [API_CACHE_TAG] } });
       // The API is the source of truth: a 404 means the slug is gone (maybe renamed → redirect), so don't
       // fall back to a possibly stale list and serve the old URL as a duplicate page.
       if (res.status === 404) return null;
@@ -284,6 +287,14 @@ export async function getFaqs(serviceSlug: string, locale: Locale = "en"): Promi
     `/faqs/?service=${encodeURIComponent(serviceSlug)}&page_size=100${langParam(locale, "&")}`,
   );
   const rows = Array.isArray(data) ? data : data?.results ?? [];
+  return rows.filter((f) => f.question && f.answer).map((f) => ({ question: f.question, answer: f.answer }));
+}
+
+/** General FAQs (not tied to a service) from the dashboard; null when the API can't be reached. */
+export async function getGeneralFaqs(locale: Locale = "en"): Promise<Faq[] | null> {
+  const data = await get<Paginated<ApiFaq> | ApiFaq[]>(`/faqs/?general=true&page_size=100${langParam(locale, "&")}`);
+  if (!data) return null;
+  const rows = Array.isArray(data) ? data : data.results ?? [];
   return rows.filter((f) => f.question && f.answer).map((f) => ({ question: f.question, answer: f.answer }));
 }
 
@@ -327,6 +338,7 @@ function mapPost(p: ApiPost, locale: Locale): Post | null {
       metaDescription: (ar ? p.meta_description_ar : p.meta_description) || undefined,
       ogImage: p.og_image || undefined,
       noindex: p.noindex ?? false,
+      canonicalUrl: p.canonical_url || undefined,
     },
   };
 }
@@ -338,13 +350,12 @@ export async function getPosts(locale: Locale = "en"): Promise<Post[]> {
 
 export async function getPost(slug: string, locale: Locale = "en"): Promise<Post | null> {
   if (!API_URL) return null;
-  try {
-    const res = await fetch(`${API_URL}/blog/${encodeURIComponent(slug)}/`, { next: { revalidate: REVALIDATE, tags: [API_CACHE_TAG] } });
-    if (!res.ok) return null;
-    return mapPost((await res.json()) as ApiPost, locale);
-  } catch {
-    return null;
-  }
+  const res = await fetch(`${API_URL}/blog/${encodeURIComponent(slug)}/`, { signal: AbortSignal.timeout(10_000), next: { revalidate: REVALIDATE, tags: [API_CACHE_TAG] } });
+  // Only a 404 means "no such post". Any other failure throws, so ISR keeps serving the last good page
+  // instead of replacing a live article with a 404.
+  if (res.status === 404) return null;
+  if (!res.ok) throw new Error(`[api] blog/${slug}: HTTP ${res.status}`);
+  return mapPost((await res.json()) as ApiPost, locale);
 }
 
 /** An author's profile and published posts; null when the author doesn't exist (or is hidden). */
@@ -408,6 +419,13 @@ const SOCIAL_LABELS: Record<string, string> = {
 };
 const socialLabel = (key: string) => SOCIAL_LABELS[key.trim().toLowerCase()] ?? key.charAt(0).toUpperCase() + key.slice(1);
 
+/** The SiteSettings model's untouched default: not a title the team chose, so it's ignored. */
+const HERO_TITLE_MODEL_DEFAULT = "Building the Future of Software";
+const heroTitleOf = (v?: string) => {
+  const t = v?.trim();
+  return t && t !== HERO_TITLE_MODEL_DEFAULT ? t : undefined;
+};
+
 export async function getSite(locale: Locale = "en"): Promise<SiteContent> {
   const fallback = locale === "ar" ? SITE_AR : SITE;
   const s = await get<ApiSettings>("/settings/");
@@ -415,24 +433,39 @@ export async function getSite(locale: Locale = "en"): Promise<SiteContent> {
   const phone = s.contact_phone || SITE.contact.phone;
   const ar = locale === "ar";
   return {
-    // Settings loaded: an empty announcement hides the hero badge. Arabic never shows English text:
-    // it uses the Arabic announcement, else the built-in Arabic badge (only while an announcement is set).
-    badge: ar
-      ? (s.announcement_text ?? "").trim() || s.announcement_text_ar?.trim()
-        ? pick(s.announcement_text_ar, fallback.badge)
-        : ""
-      : (s.announcement_text ?? "").trim(),
-    subtitle: ar ? pick(s.hero_subtitle_ar, fallback.subtitle) : pick(s.hero_subtitle, fallback.subtitle),
-    about: ar ? pick(s.company_about_ar, fallback.about) : pick(s.company_about, fallback.about),
+    // Settings loaded: an empty announcement hides the hero badge.
+    badge: ar ? pick(s.announcement_text_ar, s.announcement_text) : (s.announcement_text ?? "").trim(),
+    heroTitle: heroTitleOf(ar ? s.hero_title_ar : s.hero_title),
+    // The hero subtitle and the about text are fixed parts of the layout: while the dashboard leaves
+    // them blank the built-in copy is shown.
+    subtitle: ar ? pick(s.hero_subtitle_ar, s.hero_subtitle, fallback.subtitle) : pick(s.hero_subtitle, fallback.subtitle),
+    about: ar ? pick(s.company_about_ar, s.company_about, fallback.about) : pick(s.company_about, fallback.about),
     contact: {
       email: s.contact_email || SITE.contact.email,
       phone,
       whatsapp: whatsappLink(phone),
       ctoPhone: SITE.contact.ctoPhone,
-      address: ar ? pick(s.address_ar, fallback.contact.address) : pick(s.address, fallback.contact.address),
+      address: ar ? pick(s.address_ar, s.address, fallback.contact.address) : pick(s.address, fallback.contact.address),
       socials: Object.entries(s.social_links ?? {})
         .filter(([, href]) => href)
         .map(([key, href]) => ({ label: socialLabel(key), href })),
     },
   };
+}
+
+/* ----------------------------- Site copy ---------------------------- */
+
+export type SiteCopyOverrides = Partial<Record<Locale, Record<string, string>>>;
+type ApiSiteCopy = { en?: Record<string, unknown>; ar?: Record<string, unknown>; updated_at?: string | null };
+
+const stringsOnly = (m: unknown): Record<string, string> =>
+  m && typeof m === "object" && !Array.isArray(m)
+    ? Object.fromEntries(Object.entries(m as Record<string, unknown>).filter((e): e is [string, string] => typeof e[1] === "string"))
+    : {};
+
+/** Dashboard overrides of the built-in UI copy (see i18n/catalog.ts); null when the API can't be reached. */
+export async function getSiteCopyOverrides(): Promise<SiteCopyOverrides | null> {
+  const data = await get<ApiSiteCopy>("/site-copy/");
+  if (!data) return null;
+  return { en: stringsOnly(data.en), ar: stringsOnly(data.ar) };
 }

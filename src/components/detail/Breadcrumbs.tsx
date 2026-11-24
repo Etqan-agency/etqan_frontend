@@ -1,12 +1,12 @@
 import Link from "next/link";
 import { jsonLd } from "@/lib/seo";
 import { SITE_URL } from "@/lib/site";
-import { getDictionary } from "@/i18n";
+import { getCopy } from "@/i18n";
 
 export type Crumb = { name: string; href: string };
 
 /** Visible breadcrumb trail + BreadcrumbList structured data. The last crumb is the current page. */
-export default function Breadcrumbs({ items }: { items: Crumb[] }) {
+export default async function Breadcrumbs({ items }: { items: Crumb[] }) {
   const schema = {
     "@type": "BreadcrumbList",
     itemListElement: items.map((c, i) => ({
@@ -18,7 +18,7 @@ export default function Breadcrumbs({ items }: { items: Crumb[] }) {
   };
 
   // The first crumb is always the localized home ("/" or "/ar"), which tells us the page language.
-  const label = getDictionary(items[0]?.href.startsWith("/ar") ? "ar" : "en").a11y.breadcrumb;
+  const label = (await getCopy(items[0]?.href.startsWith("/ar") ? "ar" : "en")).a11y.breadcrumb;
 
   return (
     <nav aria-label={label} className="text-[11px] font-medium uppercase tracking-[0.3em] text-muted">

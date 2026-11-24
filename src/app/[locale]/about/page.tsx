@@ -6,11 +6,10 @@ import InnerPage from "@/components/detail/InnerPage";
 import Breadcrumbs from "@/components/detail/Breadcrumbs";
 import Process from "@/components/Process";
 import { getMissionVision, getTeam } from "@/lib/api";
-import { processFor } from "@/lib/data";
 import { absoluteUrl, jsonLd, pageMetadata } from "@/lib/seo";
 import { SITE_URL } from "@/lib/site";
 import { isLocale, localePath, type Locale } from "@/i18n/config";
-import { getDictionary } from "@/i18n";
+import { getCopy, getProcessCopy } from "@/i18n";
 
 export const revalidate = 60;
 
@@ -19,7 +18,7 @@ type Params = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { locale } = await params;
   if (!isLocale(locale)) return {};
-  const a = getDictionary(locale).aboutPage;
+  const a = (await getCopy(locale)).aboutPage;
   return pageMetadata({ locale, path: "/about", title: a.metaTitle, description: a.metaDescription, absoluteTitle: true });
 }
 
@@ -27,7 +26,7 @@ export default async function AboutPage({ params }: Params) {
   const { locale: raw } = await params;
   if (!isLocale(raw)) notFound();
   const locale: Locale = raw;
-  const t = getDictionary(locale);
+  const t = await getCopy(locale);
   const a = t.aboutPage;
   const [team, mv] = await Promise.all([getTeam(locale), getMissionVision(locale)]);
   const p = (x: string) => localePath(locale, x);
@@ -79,7 +78,7 @@ export default async function AboutPage({ params }: Params) {
       </section>
 
       {/* Approach */}
-      <Process items={processFor(locale)} t={{ ...t.process, heading: [a.approachTitle, ""] }} />
+      <Process items={await getProcessCopy(locale)} t={{ ...t.process, heading: [a.approachTitle, ""] }} />
 
       {/* Why ETQAN */}
       <section className="border-t border-border px-6 py-24 md:px-10 md:py-32">

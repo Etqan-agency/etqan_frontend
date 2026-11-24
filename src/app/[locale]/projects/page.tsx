@@ -9,7 +9,7 @@ import ProjectCard from "@/components/detail/ProjectCard";
 import { getProjects } from "@/lib/api";
 import { absoluteUrl, jsonLd, pageMetadata } from "@/lib/seo";
 import { isLocale, localePath, type Locale } from "@/i18n/config";
-import { getDictionary } from "@/i18n";
+import { getCopy } from "@/i18n";
 
 export const revalidate = 60;
 
@@ -18,7 +18,7 @@ type Params = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { locale } = await params;
   if (!isLocale(locale)) return {};
-  const d = getDictionary(locale).detail;
+  const d = (await getCopy(locale)).detail;
   return pageMetadata({ locale, path: "/projects", title: d.projectsTitle, description: d.projectsIntro });
 }
 
@@ -26,7 +26,7 @@ export default async function ProjectsHub({ params }: Params) {
   const { locale: raw } = await params;
   if (!isLocale(raw)) notFound();
   const locale: Locale = raw;
-  const t = getDictionary(locale);
+  const t = await getCopy(locale);
   const d = t.detail;
   const projects = await getProjects(locale);
   // Company work first; team experience is shown separately and labelled as such.

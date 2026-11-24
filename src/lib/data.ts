@@ -15,7 +15,8 @@ export type Contact = {
   address: string;
   socials: { label: string; href: string }[];
 };
-export type SiteContent = { badge: string; subtitle: string; about: string; contact: Contact };
+/** `heroTitle`: the dashboard's hero title (Settings); unset means "use the UI copy". */
+export type SiteContent = { badge: string; heroTitle?: string; subtitle: string; about: string; contact: Contact };
 export type Seo = { metaTitle?: string; metaDescription?: string; ogImage?: string; noindex?: boolean; canonicalUrl?: string };
 export type GalleryImage = { src: string; width: number; height: number; alt: string };
 export type Service = {

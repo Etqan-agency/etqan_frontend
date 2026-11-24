@@ -7,10 +7,11 @@ import StructuredData from "@/components/StructuredData";
 import Tracking from "@/components/Tracking";
 import ConsentBanner from "@/components/ConsentBanner";
 import ContactBar from "@/components/ContactBar";
+import { NotFoundCopyProvider } from "@/components/NotFoundCopy";
 import { getSite } from "@/lib/api";
 import { GTM_ID, SITE_NAME, SITE_URL } from "@/lib/site";
 import { LOCALES, dirOf, isLocale, languageAlternates, localePath, type Locale } from "@/i18n/config";
-import { getDictionary } from "@/i18n";
+import { getDictionary, getCopy } from "@/i18n";
 import "../globals.css";
 
 // Readex Pro covers Arabic and Latin, so both locales share one face.
@@ -29,7 +30,7 @@ type Params = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { locale } = await params;
   if (!isLocale(locale)) return {};
-  const t = getDictionary(locale);
+  const t = await getCopy(locale);
   return {
     metadataBase: new URL(SITE_URL),
     title: { default: t.meta.title, template: `%s | ${SITE_NAME}` },
@@ -60,7 +61,7 @@ export default async function LocaleLayout({ children, params }: Readonly<{ chil
   const { locale: raw } = await params;
   if (!isLocale(raw)) notFound();
   const locale: Locale = raw;
-  const t = getDictionary(locale);
+  const t = await getCopy(locale);
   const site = await getSite(locale);
 
   return (
@@ -89,7 +90,9 @@ export default async function LocaleLayout({ children, params }: Readonly<{ chil
             </noscript>
           </>
         )}
-        <SmoothScroll>{children}</SmoothScroll>
+        <SmoothScroll>
+          <NotFoundCopyProvider copy={t.notFound}>{children}</NotFoundCopyProvider>
+        </SmoothScroll>
         <ContactBar contact={site.contact} t={t.contactBar} />
         <Tracking />
         {GTM_ID && <ConsentBanner t={t.consent} />}

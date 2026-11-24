@@ -8,7 +8,7 @@ import { BLOG_MIN_POSTS, getPosts } from "@/lib/api";
 import { absoluteUrl, jsonLd, pageMetadata } from "@/lib/seo";
 import { formatDate } from "@/lib/format";
 import { isLocale, localePath, type Locale } from "@/i18n/config";
-import { getDictionary } from "@/i18n";
+import { getCopy } from "@/i18n";
 
 export const revalidate = 60;
 
@@ -17,7 +17,7 @@ type Params = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { locale } = await params;
   if (!isLocale(locale)) return {};
-  const b = getDictionary(locale).blog;
+  const b = (await getCopy(locale)).blog;
   const posts = await getPosts(locale);
   // A near-empty blog index shouldn't be indexed; each article is indexable on its own.
   return pageMetadata({ locale, path: "/blog", title: b.metaTitle, description: b.metaDescription, absoluteTitle: true, noindex: posts.length < BLOG_MIN_POSTS });
@@ -27,7 +27,7 @@ export default async function BlogIndex({ params }: Params) {
   const { locale: raw } = await params;
   if (!isLocale(raw)) notFound();
   const locale: Locale = raw;
-  const t = getDictionary(locale);
+  const t = await getCopy(locale);
   const b = t.blog;
   const posts = await getPosts(locale);
 

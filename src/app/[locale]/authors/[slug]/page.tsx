@@ -10,7 +10,7 @@ import { absoluteUrl, jsonLd, pageMetadata } from "@/lib/seo";
 import { SITE_URL } from "@/lib/site";
 import { formatDate } from "@/lib/format";
 import { isLocale, localePath, type Locale } from "@/i18n/config";
-import { getDictionary } from "@/i18n";
+import { getCopy } from "@/i18n";
 
 export const revalidate = 60;
 
@@ -77,7 +77,7 @@ export default async function AuthorPage({ params }: Params) {
   const author = await getAuthor(slug, locale);
   if (!author) return redirectOrNotFound(locale, `/authors/${slug}`);
 
-  const t = getDictionary(locale);
+  const t = await getCopy(locale);
   const b = t.blog;
   const c = COPY[locale];
   const path = `/authors/${author.slug}`;

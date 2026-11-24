@@ -2,13 +2,16 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { getDictionary } from "@/i18n";
+import en from "@/i18n/en";
+import ar from "@/i18n/ar";
 import { localePath } from "@/i18n/config";
+import { useNotFoundCopy } from "@/components/NotFoundCopy";
 
 // not-found pages don't receive route params, so read the language from the URL.
 export default function NotFound() {
   const locale = usePathname()?.startsWith("/ar") ? "ar" : "en";
-  const t = getDictionary(locale).notFound;
+  // Dashboard-edited strings from the locale layout; built-in copy if rendered outside it.
+  const t = useNotFoundCopy() ?? (locale === "ar" ? ar : en).notFound;
   const home = localePath(locale, "/");
 
   return (

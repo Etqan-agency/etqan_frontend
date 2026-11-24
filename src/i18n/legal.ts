@@ -20,7 +20,7 @@ export type LegalDoc = {
   sections: LegalSection[];
 };
 
-type LegalStrings = {
+export type LegalStrings = {
   /** Navbar services menu. */
   menu: { allServices: string; servicesMenu: string; overview: string };
   /** Footer bottom bar. */

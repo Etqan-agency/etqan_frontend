@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getProjects, getSite } from "@/lib/api";
 import { isLocale, localePath } from "@/i18n/config";
-import { getDictionary } from "@/i18n";
+import { getCopy } from "@/i18n";
 
 type Params = { params: Promise<{ locale: string }> };
 
@@ -11,7 +11,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { locale } = await params;
   if (!isLocale(locale)) return {};
   return {
-    title: getDictionary(locale).thankYou.metaTitle,
+    title: (await getCopy(locale)).thankYou.metaTitle,
     robots: { index: false, follow: true },
     alternates: { canonical: localePath(locale, "/thank-you") },
   };
@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 export default async function ThankYou({ params }: Params) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
-  const t = getDictionary(locale).thankYou;
+  const t = (await getCopy(locale)).thankYou;
   const [site, projects] = await Promise.all([getSite(locale), getProjects(locale)]);
   const home = localePath(locale, "/");
 

@@ -4,20 +4,19 @@ import type { Contact, Service } from "@/lib/data";
 import type { NavLink } from "@/lib/nav";
 import type { Dictionary } from "@/i18n";
 import { localePath, type Locale } from "@/i18n/config";
-import { getLegal } from "@/i18n/legal";
-import { getDictionary } from "@/i18n";
+import { getCopy, getLegalCopy } from "@/i18n";
 import MotionToggle from "./MotionToggle";
 
 const heading = "text-[10px] font-medium uppercase tracking-[0.3em] text-white/60";
 const link = "text-xs text-white/80 transition-colors duration-300 hover:text-accent";
 
-export default function Footer({
+export default async function Footer({
   contact, services, t, nav, locale,
 }: {
   contact: Contact; services: Pick<Service, "slug" | "title">[]; t: Dictionary["footer"]; nav: NavLink[]; locale: Locale;
 }) {
-  const legal = getLegal(locale).footer;
-  const a11y = getDictionary(locale).a11y;
+  const legal = (await getLegalCopy(locale)).footer;
+  const a11y = (await getCopy(locale)).a11y;
   return (
     <footer className="border-t border-white/10 bg-navy px-6 pb-24 pt-20 text-white md:px-10 md:pb-10">
       <div className="mx-auto max-w-[1520px]">

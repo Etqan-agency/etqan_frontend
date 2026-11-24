@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import { getServices, getSite } from "@/lib/api";
 import { getNav } from "@/lib/nav";
 import type { Locale } from "@/i18n/config";
-import { getDictionary } from "@/i18n";
+import { getCopy } from "@/i18n";
 
 /**
  * Chrome shared by every inner page: navigation, an optional contact section (kept on service and
@@ -15,7 +15,7 @@ export default async function InnerPage({
 }: {
   locale: Locale; path: string; children: React.ReactNode; withContact?: boolean;
 }) {
-  const t = getDictionary(locale);
+  const t = await getCopy(locale);
   const [site, services, nav] = await Promise.all([getSite(locale), getServices(locale), getNav(locale, path)]);
 
   return (

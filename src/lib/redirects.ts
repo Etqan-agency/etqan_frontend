@@ -5,11 +5,14 @@ import { LEGACY_SERVICE_SLUGS } from "./data";
 
 type Resolved = { to: string; permanent: boolean };
 
+/** Same-site paths only: one leading "/", never "//" or "/\" (protocol-relative, off-site). */
+const SAFE_TARGET = /^\/(?![\/\\])/;
+
 /** Ask the backend whether a moved URL has a new home (paths are stored without the /ar prefix). */
 async function resolve(path: string): Promise<Resolved | null> {
   if (API_URL) {
     try {
-      const res = await fetch(`${API_URL}/redirects/resolve/?path=${encodeURIComponent(path)}`, { next: { revalidate: 300, tags: [API_CACHE_TAG] } });
+      const res = await fetch(`${API_URL}/redirects/resolve/?path=${encodeURIComponent(path)}`, { signal: AbortSignal.timeout(10_000), next: { revalidate: 300, tags: [API_CACHE_TAG] } });
       if (res.ok) return (await res.json()) as Resolved;
     } catch {
       /* API down — fall through to built-in legacy slugs */
@@ -26,7 +29,7 @@ async function resolve(path: string): Promise<Resolved | null> {
  */
 export async function redirectOrNotFound(locale: Locale, path: string): Promise<never> {
   const hit = await resolve(path);
-  if (hit && hit.to !== path) {
+  if (hit && typeof hit.to === "string" && SAFE_TARGET.test(hit.to) && hit.to !== path) {
     const target = localePath(locale, hit.to);
     if (hit.permanent) permanentRedirect(target);
     redirect(target);

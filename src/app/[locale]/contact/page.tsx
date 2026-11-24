@@ -5,11 +5,11 @@ import InnerPage from "@/components/detail/InnerPage";
 import Breadcrumbs from "@/components/detail/Breadcrumbs";
 import Faqs from "@/components/detail/Faqs";
 import ContactForm from "@/components/ContactForm";
-import { getServices, getSite } from "@/lib/api";
+import { getGeneralFaqs, getServices, getSite } from "@/lib/api";
 import { absoluteUrl, jsonLd, pageMetadata } from "@/lib/seo";
 import { SITE_URL } from "@/lib/site";
 import { isLocale, localePath, type Locale } from "@/i18n/config";
-import { getDictionary } from "@/i18n";
+import { getCopy } from "@/i18n";
 
 export const revalidate = 60;
 
@@ -18,7 +18,7 @@ type Params = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { locale } = await params;
   if (!isLocale(locale)) return {};
-  const c = getDictionary(locale).contactPage;
+  const c = (await getCopy(locale)).contactPage;
   return pageMetadata({ locale, path: "/contact", title: c.metaTitle, description: c.metaDescription, absoluteTitle: true });
 }
 
@@ -28,9 +28,11 @@ export default async function ContactPage({ params }: Params) {
   const { locale: raw } = await params;
   if (!isLocale(raw)) notFound();
   const locale: Locale = raw;
-  const t = getDictionary(locale);
+  const t = await getCopy(locale);
   const c = t.contactPage;
-  const [site, services] = await Promise.all([getSite(locale), getServices(locale)]);
+  const [site, services, generalFaqs] = await Promise.all([getSite(locale), getServices(locale), getGeneralFaqs(locale)]);
+  // General FAQs come from the dashboard; the built-in questions only show while it has none (or is unreachable).
+  const faqs = generalFaqs?.length ? generalFaqs : t.faqs.items;
   const { contact } = site;
 
   const channels = [
@@ -129,7 +131,7 @@ export default async function ContactPage({ params }: Params) {
         </div>
       </section>
 
-      <Faqs heading={t.faqs.title} faqs={t.faqs.items} />
+      <Faqs heading={t.faqs.title} faqs={faqs} />
 
       <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(schema)} />
     </InnerPage>

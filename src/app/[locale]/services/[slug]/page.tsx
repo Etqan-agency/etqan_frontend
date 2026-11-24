@@ -9,11 +9,10 @@ import Faqs from "@/components/detail/Faqs";
 import Process from "@/components/Process";
 import { getFaqs, getProjects, getService, getServices, getSite } from "@/lib/api";
 import { redirectOrNotFound } from "@/lib/redirects";
-import { processFor } from "@/lib/data";
 import { absoluteUrl, jsonLd, pageMetadata } from "@/lib/seo";
 import { SITE_URL } from "@/lib/site";
 import { isLocale, localePath, type Locale } from "@/i18n/config";
-import { getDictionary } from "@/i18n";
+import { getCopy, getProcessCopy } from "@/i18n";
 
 export const revalidate = 60;
 
@@ -51,7 +50,7 @@ export default async function ServicePage({ params }: Params) {
   ]);
   if (!service) return redirectOrNotFound(locale, `/services/${slug}`);
 
-  const t = getDictionary(locale);
+  const t = await getCopy(locale);
   const d = t.detail;
   const path = `/services/${service.slug}`;
   const home = localePath(locale, "/");
@@ -140,7 +139,7 @@ export default async function ServicePage({ params }: Params) {
         </section>
       )}
 
-      <Process items={processFor(locale)} t={t.process} />
+      <Process items={await getProcessCopy(locale)} t={t.process} />
 
       <Faqs heading={d.faqs} faqs={faqs} />
 

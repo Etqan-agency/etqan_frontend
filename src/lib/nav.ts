@@ -1,7 +1,6 @@
 import { blogIsLive, getServices } from "./api";
 import { localePath, type Locale } from "@/i18n/config";
-import { getDictionary } from "@/i18n";
-import { getLegal } from "@/i18n/legal";
+import { getCopy, getLegalCopy } from "@/i18n";
 
 export type NavChild = { label: string; href: string; description: string };
 /** A main-menu link. `children` turns it into a menu (desktop dropdown, nested list on mobile). */
@@ -13,8 +12,8 @@ export type NavLink = { label: string; href: string; children?: NavChild[] };
  * so visitors can jump straight to the one they need from anywhere.
  */
 export async function getNav(locale: Locale, path: string) {
-  const t = getDictionary(locale).nav;
-  const menu = getLegal(locale).menu;
+  const t = (await getCopy(locale)).nav;
+  const menu = (await getLegalCopy(locale)).menu;
   const p = (x: string) => localePath(locale, x);
   const [showBlog, services] = await Promise.all([blogIsLive(locale), getServices(locale)]);
   const links: NavLink[] = [
