@@ -1,9 +1,9 @@
 /** UI copy. Content the team edits (services, projects, about…) comes from the API; see lib/data.ts for fallbacks. */
 const en = {
   meta: {
-    title: "ETQAN — Software Development & Digital Solutions Company in Egypt",
+    title: "ETQAN — AI Products & Production Systems",
     description:
-      "ETQAN designs and builds websites, mobile apps and custom business software for companies in Egypt and the Gulf — software products and solutions, from first idea to launch and support.",
+      "ETQAN builds AI-powered products and production-ready systems that solve real business problems — turning complex workflows into intelligent, reliable and scalable solutions.",
     ogLocale: "en_US",
   },
   a11y: {
@@ -19,7 +19,7 @@ const en = {
     projects: "Projects",
     blog: "Blog",
     contact: "Contact",
-    cta: "START A PROJECT",
+    cta: "BUILD WITH US",
     homeAria: "ETQAN home",
     open: "Open menu",
     close: "Close menu",
@@ -29,15 +29,59 @@ const en = {
     menuAria: "Site menu",
   },
   hero: {
-    h1Line1: "Software products",
-    h1Line2: "& digital",
-    h1Accent: "solutions.",
-    cta: "Book a free consultation",
-    trust: ["Web, mobile & custom software", "Design, build & support in one team", "Arabic & English products", "Based in Giza, Egypt"],
+    h1Line1: "AI Products.",
+    h1Line2: "Production",
+    h1Accent: "Systems.",
+    cta: "Build with us",
+    trust: ["AI-native products", "Production-ready systems", "Workflow automation", "Arabic & English"],
     phrases: ["Building Tomorrow", "Shaping Futures", "Shipping Products"],
     scroll: "Scroll",
   },
-  brands: { heading: "The technology behind our work" },
+  brands: { heading: "AI models & tools we build with", stackHeading: "The technology behind our work" },
+  whatWeDo: {
+    heading: ["What We", "Do"],
+    intro:
+      "We build AI products and intelligent systems designed for production environments — combining practical innovation, reliable performance, and seamless integration into real business operations.",
+    items: [
+      {
+        title: "Build AI Products",
+        text: [
+          "We design, develop, and launch AI-native products from concept to production.",
+          "Our focus is on solving meaningful problems through intelligent software, practical applications, and products built for long-term value.",
+        ],
+      },
+      {
+        title: "Build Production Systems",
+        text: [
+          "We develop end-to-end AI systems that integrate into existing business environments, including CRM, ERP, customer support, and internal operations.",
+          "Our solutions go beyond standalone AI tools to become part of how businesses actually work.",
+        ],
+      },
+      {
+        title: "Transform Workflows Into Intelligent Systems",
+        text: [
+          "We turn fragmented, repetitive, and manual processes into structured, automated, and measurable systems.",
+          "Every solution is designed with clear objectives, reliable outputs, appropriate safeguards, and continuous evaluation.",
+        ],
+      },
+    ],
+  },
+  product: {
+    eyebrow: "Featured Product",
+    heading: "AI Products & Production Builds",
+    intro: [
+      "We don't just build prototypes. We build intelligent products and systems designed to work in the real world.",
+      "From specialized AI applications to complex business automation, our work focuses on turning ideas into practical, scalable solutions.",
+    ],
+    cardLabel: "Featured AI Product",
+    cardTitle: "An AI-powered workspace built for real-world applications.",
+    cardText: [
+      "We develop intelligent workspaces that bring knowledge, workflows, and AI capabilities together in one structured environment.",
+      "Our approach combines contextual intelligence, reliable information retrieval, workflow automation, and human oversight to deliver solutions that people can trust and use every day.",
+    ],
+    pillars: ["Contextual intelligence", "Reliable retrieval", "Workflow automation", "Human oversight"],
+    cta: "Explore our products",
+  },
   services: { heading: ["Our", "Expertise"], countLabel: "Disciplines" },
   work: {
     scanLabel: "From design to code",
@@ -56,13 +100,21 @@ const en = {
     more: "More about ETQAN",
     values: ["Software Development", "Web Platforms", "Mobile Apps", "Custom Systems", "UI/UX Design", "Automation & Integrations"],
   },
-  process: { heading: ["The", "Process"], countLabel: "Steps" },
+  process: {
+    heading: ["How We", "Work"],
+    countLabel: "Steps",
+    intro: ["We don't optimize for impressive demos.", "We optimize for adoption, reliability, and measurable business outcomes."],
+  },
   contact: {
-    eyebrow: "(Contact) Start Your Project",
+    eyebrow: "(Contact) Start a Conversation",
     heading: "Let's Build",
-    headingLine2: "It",
-    headingAccent: "Right.",
-    intro: "A website, an app or custom software — tell us what you need and we'll come back to you with clear next steps.",
+    headingLine2: "Something",
+    headingAccent: "Meaningful.",
+    intro: "Have an AI product idea or a business workflow that could work better? Let's explore how intelligent software can turn it into a practical solution.",
+    formTitle: "Start a Conversation",
+    formText:
+      "Tell us about your project, your challenges, or the opportunity you're exploring. We'll help you identify the right approach and define the next steps toward building a production-ready solution.",
+    closing: "Let's turn ideas into intelligent systems.",
     whatsapp: "WhatsApp",
   },
   form: {
@@ -78,14 +130,14 @@ const en = {
     hint: "Leave an email or a WhatsApp number — whichever you prefer.",
     privacyNote: "By sending this form, you agree that ETQAN may use your details to reply to your enquiry, as described in our",
     privacyLink: "Privacy Policy",
-    submit: "START A PROJECT",
+    submit: "GET IN TOUCH",
     sending: "SENDING…",
     needContact: "Please leave an email address or a phone / WhatsApp number so we can reply.",
     network: "We couldn't send your message. Email us at {email} or message us on WhatsApp.",
     generic: "Something went wrong. Please try again.",
   },
   footer: {
-    tagline: "Software products and digital solutions — built with mastery.",
+    tagline: "AI products and production systems — built with mastery.",
     company: "Company",
     services: "Services",
     touch: "Get in touch",
@@ -179,7 +231,7 @@ const en = {
       { title: "Product design", text: "UI/UX design for web and mobile — user flows, wireframes, interfaces and design systems, built for Arabic and English users from the start." },
     ],
     approachTitle: "Our approach",
-    approachText: "Six clear steps, from understanding your business to launching, supporting and improving the product.",
+    approachText: "Three stages — assess, build, scale — optimised for adoption, reliability and measurable business outcomes.",
     whyTitle: "Why work with ETQAN",
     why: [
       { title: "One team from idea to launch", text: "Planning, design and engineering under one roof — no hand-offs between vendors, one partner accountable for the product." },
@@ -204,7 +256,6 @@ const en = {
     h1: "Let's talk about your project.",
     intro: "Send the form, message us on WhatsApp or call — whichever is easiest. We work with businesses in Egypt, Saudi Arabia and the UAE, in Arabic and English.",
     phone: "Phone",
-    ctoPhone: "CTO direct line",
     whatsapp: "WhatsApp",
     whatsappCta: "Chat on WhatsApp",
     email: "Email",

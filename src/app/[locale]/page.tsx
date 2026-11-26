@@ -3,7 +3,9 @@ import { notFound } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import IntroHero from "@/components/intro/IntroHero";
 import TrustedBrands from "@/components/TrustedBrands";
+import WhatWeDo from "@/components/WhatWeDo";
 import Services from "@/components/Services";
+import FeaturedProduct from "@/components/FeaturedProduct";
 import FeaturedWork from "@/components/FeaturedWork";
 import About from "@/components/About";
 import Process from "@/components/Process";
@@ -56,11 +58,13 @@ export default async function Home({ params }: Params) {
       <Navbar contact={site.contact} t={t.nav} {...nav} />
       <main id="main" tabIndex={-1}>
         <IntroHero badge={site.badge} subtitle={site.subtitle} t={heroWithTitle(t.hero, site.heroTitle)} />
-        <TrustedBrands heading={t.brands.heading} />
+        <TrustedBrands heading={t.brands.heading} stackHeading={t.brands.stackHeading} />
+        <WhatWeDo t={t.whatWeDo} />
         <Services services={services} t={t.services} servicesPath={localePath(locale, "/services")} learnMore={t.detail.learnMore} />
+        <FeaturedProduct t={t.product} href={localePath(locale, "/projects")} />
         <FeaturedWork projects={projects} t={t.work} projectsPath={localePath(locale, "/projects")} teamBadge={t.detail.teamBadge} viewAll={t.detail.allProjects} dir={dirOf(locale)} />
         <About text={site.about} t={t.about} href={localePath(locale, "/about")} />
-        <Process items={await getProcessCopy(locale)} t={t.process} />
+        <Process items={await getProcessCopy(locale)} t={t.process} intro={t.process.intro} />
         <Contact contact={site.contact} services={services.map((s) => ({ slug: s.slug, title: s.title }))} t={t.contact} form={t.form} />
       </main>
       <Footer contact={site.contact} services={services} t={t.footer} nav={nav.links} locale={locale} />

@@ -10,8 +10,6 @@ export type Contact = {
   email: string;
   phone: string;
   whatsapp: string;
-  /** CTO direct line, shown next to the main number. */
-  ctoPhone?: string;
   address: string;
   socials: { label: string; href: string }[];
 };
@@ -71,14 +69,13 @@ export const whatsappLink = (phone: string) => `https://wa.me/${phone.replace(/\
 export const SITE: SiteContent = {
   badge: "ETQAN means mastery",
   subtitle:
-    "ETQAN designs and builds websites, mobile apps and custom business software for companies in Egypt and the Gulf — software products and solutions, from first idea to launch and support.",
+    "We build AI-powered products and production-ready systems that solve real business problems. We turn complex workflows into intelligent, reliable, and scalable solutions designed for real-world adoption.",
   about:
     "Etqan means mastery — and it is how we work. Engineers and designers under one roof, building websites, apps and business software that perform, from the first idea to long-term support.",
   contact: {
     email: "admin@etqanpp.com",
     phone: "+20 150 585 8198",
     whatsapp: whatsappLink("+20 150 585 8198"),
-    ctoPhone: "+20 102 857 7310",
     address: "6th October, Giza, Egypt",
     // Official profiles; the dashboard's Settings → Social links override these when set.
     socials: [
@@ -428,12 +425,9 @@ export const LEGACY_SERVICE_SLUGS: Record<string, string> = {
 export const canonicalServiceSlug = (slug: string) => LEGACY_SERVICE_SLUGS[slug] ?? slug;
 
 export const PROCESS: TimelineItem[] = [
-  { date: "Step 01", title: "Discovery", description: "We learn your business, your customers and your goals — then define what success looks like in numbers." },
-  { date: "Step 02", title: "Strategy & Planning", description: "A clear roadmap covering scope, technology, timeline and the milestones up to launch." },
-  { date: "Step 03", title: "Design", description: "Brand, UX and UI designed together and tested with real users before a single line of production code." },
-  { date: "Step 04", title: "Develop & Test", description: "Agile sprints with weekly demos, automated testing and full transparency on progress." },
-  { date: "Step 05", title: "Launch", description: "We deploy to production and, for apps, publish to the App Store and Google Play — then monitor the first days closely." },
-  { date: "Ongoing", title: "Support & Improve", description: "Maintenance, new features and continuous optimisation, so your product keeps improving." },
+  { date: "01", title: "Assess", subtitle: "Understand the problem. Define the opportunity.", description: "We analyze existing workflows, business objectives, data readiness, operational challenges, and success metrics. Before building anything, we identify where AI can create real value." },
+  { date: "02", title: "Build", subtitle: "Design, develop, integrate, and evaluate.", description: "We build the product or system around real operational needs — AI engineering, software development, integrations, testing, evaluation, and the implementation of appropriate safeguards." },
+  { date: "03", title: "Scale", subtitle: "Monitor, improve, and evolve.", description: "We continuously evaluate system performance, improve reliability, and adapt solutions as business needs evolve — so they remain useful, efficient, and dependable over time." },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -443,7 +437,7 @@ export const PROCESS: TimelineItem[] = [
 export const SITE_AR: SiteContent = {
   badge: "صُنع بإتقان",
   subtitle:
-    "في إتقان نصمّم ونطوّر المواقع الإلكترونية وتطبيقات الجوال والأنظمة المخصصة للشركات في مصر والخليج — منتجات وحلول برمجية من الفكرة حتى الإطلاق والدعم.",
+    "نبني منتجات مدعومة بالذكاء الاصطناعي وأنظمة جاهزة للإنتاج تحلّ مشكلات أعمال حقيقية، ونحوّل سير العمل المعقّد إلى حلول ذكية وموثوقة وقابلة للتوسّع، مصمّمة للاستخدام الفعلي.",
   about:
     "إتقان تعني الإحكام في العمل — وهكذا نعمل. مهندسون ومصممون تحت سقف واحد، نبني مواقع وتطبيقات وأنظمة أعمال تؤدي بكفاءة، من الفكرة الأولى حتى الدعم المستمر.",
   contact: { ...SITE.contact, address: "السادس من أكتوبر، الجيزة، مصر" },
@@ -691,12 +685,9 @@ export const PLATFORM_AR: Record<string, string> = {
 };
 
 export const PROCESS_AR: TimelineItem[] = [
-  { date: "الخطوة 01", title: "الاكتشاف", description: "نتعرّف على أعمالك وعملائك وأهدافك — ثم نحدد معايير النجاح بالأرقام." },
-  { date: "الخطوة 02", title: "الاستراتيجية والتخطيط", description: "خارطة طريق واضحة تشمل النطاق والتقنيات والجدول الزمني ومراحل التسليم حتى الإطلاق." },
-  { date: "الخطوة 03", title: "التصميم", description: "الهوية وتجربة المستخدم والواجهات تُصمَّم معاً وتُختبر مع مستخدمين حقيقيين قبل كتابة أي كود للإنتاج." },
-  { date: "الخطوة 04", title: "التطوير والاختبار", description: "دورات عمل رشيقة مع عروض أسبوعية واختبارات آلية وشفافية كاملة في سير العمل." },
-  { date: "الخطوة 05", title: "الإطلاق", description: "ننشر المنتج على بيئة التشغيل، ونرفع التطبيقات على App Store وGoogle Play — ثم نتابع الأيام الأولى عن قرب." },
-  { date: "مستمر", title: "الدعم والتطوير", description: "صيانة وميزات جديدة وتحسين مستمر، ليواصل منتجك التحسّن." },
+  { date: "01", title: "التقييم", subtitle: "نفهم المشكلة ونحدّد الفرصة.", description: "نحلّل سير العمل الحالي وأهداف العمل وجاهزية البيانات والتحديات التشغيلية ومؤشرات النجاح. وقبل أن نبني أي شيء، نحدّد أين يصنع الذكاء الاصطناعي قيمة حقيقية." },
+  { date: "02", title: "البناء", subtitle: "نصمّم ونطوّر وندمج ونقيّم.", description: "نبني المنتج أو النظام حول الاحتياجات التشغيلية الفعلية — هندسة الذكاء الاصطناعي وتطوير البرمجيات والتكاملات والاختبار والتقييم وتطبيق الضوابط المناسبة." },
+  { date: "03", title: "التوسّع", subtitle: "نراقب ونحسّن ونطوّر.", description: "نقيّم أداء النظام باستمرار ونحسّن موثوقيته ونطوّر الحلول مع تغيّر احتياجات العمل — لتبقى مفيدة وفعّالة وموثوقة مع الوقت." },
 ];
 
 export const processFor = (locale: Locale) => (locale === "ar" ? PROCESS_AR : PROCESS);

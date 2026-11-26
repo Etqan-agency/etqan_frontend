@@ -3,7 +3,7 @@
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
-export type TimelineItem = { date: string; title: string; description: string };
+export type TimelineItem = { date: string; title: string; subtitle?: string; description: string };
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
@@ -38,6 +38,7 @@ function Entry({ item, index }: { item: TimelineItem; index: number }) {
       >
         <p className="text-[11px] font-medium uppercase tracking-[0.35em] text-primary">{item.date}</p>
         <h3 className="mt-4 text-3xl font-medium leading-[1] tracking-[-0.035em] md:text-5xl">{item.title}</h3>
+        {item.subtitle && <p className="mt-4 text-base font-semibold md:text-lg">{item.subtitle}</p>}
         <p className={`mt-5 max-w-md text-sm leading-relaxed text-muted md:text-base ${even ? "md:ms-auto" : ""}`}>
           {item.description}
         </p>

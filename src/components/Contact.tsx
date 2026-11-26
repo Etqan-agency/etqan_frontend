@@ -24,8 +24,11 @@ export default function Contact({
           {t.intro}
         </p>
         <div className="mt-16 w-full max-w-3xl">
+          {t.formTitle && <h3 className="text-2xl font-medium tracking-[-0.03em] md:text-3xl">{t.formTitle}</h3>}
+          {t.formText && <p className="mx-auto mb-10 mt-4 max-w-xl text-sm leading-relaxed text-white/70 md:text-base">{t.formText}</p>}
           <ContactForm services={services} fallbackEmail={contact.email} t={form} />
         </div>
+        {t.closing && <p className="mt-16 text-xl font-medium md:text-2xl"><span className="text-gradient">{t.closing}</span></p>}
         <div className="mt-16 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-[11px] font-medium uppercase tracking-[0.3em] text-white/70">
           <a href={contact.whatsapp} target="_blank" rel="noreferrer" className="transition-colors hover:text-accent">{t.whatsapp}</a>
           <a href={`tel:${contact.phone.replace(/\s/g, "")}`} dir="ltr" className="transition-colors hover:text-accent">{contact.phone}</a>

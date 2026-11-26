@@ -444,7 +444,6 @@ export async function getSite(locale: Locale = "en"): Promise<SiteContent> {
       email: s.contact_email || SITE.contact.email,
       phone,
       whatsapp: whatsappLink(phone),
-      ctoPhone: SITE.contact.ctoPhone,
       address: ar ? pick(s.address_ar, s.address, fallback.contact.address) : pick(s.address, fallback.contact.address),
       socials: Object.entries(s.social_links ?? {})
         .filter(([, href]) => href)
